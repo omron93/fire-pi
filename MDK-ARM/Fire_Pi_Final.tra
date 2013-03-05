@@ -1,0 +1,42 @@
+*** Creating Trace Output File 'Fire_Pi_Final.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '"main.o"'
+### List of Objects: adding '"system_stm32f4xx.o"'
+### List of Objects: adding '"stm32f4xx_it.o"'
+### List of Objects: adding '"main_init.o"'
+### List of Objects: adding '"usart.o"'
+### List of Objects: adding '"delay.o"'
+### List of Objects: adding '"candle_position.o"'
+### List of Objects: adding '"orientation.o"'
+### List of Objects: adding '"pwm.o"'
+### List of Objects: adding '"motor.o"'
+### List of Objects: adding '"stm32f4_discovery.o"'
+### List of Objects: adding '"misc.o"'
+### List of Objects: adding '"stm32f4xx_pwr.o"'
+### List of Objects: adding '"stm32f4xx_adc.o"'
+### List of Objects: adding '"stm32f4xx_dma.o"'
+### List of Objects: adding '"stm32f4xx_exti.o"'
+### List of Objects: adding '"stm32f4xx_gpio.o"'
+### List of Objects: adding '"stm32f4xx_usart.o"'
+### List of Objects: adding '"stm32f4xx_rcc.o"'
+### List of Objects: adding '"stm32f4xx_sdio.o"'
+### List of Objects: adding '"stm32f4xx_syscfg.o"'
+### List of Objects: adding '"stm32f4xx_tim.o"'
+### List of Objects: adding '"startup_stm32f4xx.o"'
+### ADS-LD Command completed:
+--cpu Cortex-M4.fp "main.o" "system_stm32f4xx.o" "stm32f4xx_it.o" "main_init.o" "usart.o" "delay.o" "candle_position.o" "orientation.o" "pwm.o" "motor.o" "stm32f4_discovery.o" "misc.o" "stm32f4xx_pwr.o" "stm32f4xx_adc.o" "stm32f4xx_dma.o" "stm32f4xx_exti.o" "stm32f4xx_gpio.o" "stm32f4xx_usart.o" "stm32f4xx_rcc.o" "stm32f4xx_sdio.o" "stm32f4xx_syscfg.o" "stm32f4xx_tim.o" "startup_stm32f4xx.o" 
+--library_type=microlib --strict --scatter "Fire_Pi_Final.sct" 
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\Fire_Pi_Final.map" -o Fire_Pi_Final.axf### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: 'Fire_Pi_Final.axf'
+### ADS-LD Command File: 'Fire_Pi_Final.lnp'
+### Checking for dirty Components...
+### Creating CmdFile 'Fire_Pi_Final.lnp', Handle=0x000003C0
+### Writing '.lnp' file
+### ADS-LD Command file 'Fire_Pi_Final.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.
