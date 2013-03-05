@@ -33,32 +33,20 @@ void send_ultrasound(uint8_t ultrasound,int16_t distance_in)
 
 void check_ultrasound(uint8_t ultrasound)
 {
-	switch (ultrasound) 
-	{
-  case 1:
-  
-  break;
-  case 2:
-    if((distance[1][0] == -1) || (distance[1][1] == -1) || (distance[1][2] == -1))
+	ultrasound = ultrasound -1;
+    if((distance[ultrasound][0] == -1) || (distance[ultrasound][1] == -1) || (distance[ultrasound][2] == -1))
 		{
-			if((distance[1][0] == -1) && ((distance[1][1] != -1) || (distance[1][2] != -1)))distance_out[1] = (distance[1][1] + distance[1][2])/2;
-			if((distance[1][1] == -1) && ((distance[1][0] != -1) || (distance[1][2] != -1)))distance_out[1] = (distance[1][0] + distance[1][2])/2;
-			if((distance[1][2] == -1) && ((distance[1][1] != -1) || (distance[1][0] != -1)))distance_out[1] = (distance[1][0] + distance[1][1])/2;
+			if((distance[ultrasound][0] == -1) && ((distance[ultrasound][1] != -1) || (distance[ultrasound][2] != -1)))distance_out[ultrasound] = (distance[ultrasound][1] + distance[ultrasound][2])/2;
+			if((distance[ultrasound][1] == -1) && ((distance[ultrasound][0] != -1) || (distance[ultrasound][2] != -1)))distance_out[ultrasound] = (distance[ultrasound][0] + distance[ultrasound][2])/2;
+			if((distance[ultrasound][2] == -1) && ((distance[ultrasound][1] != -1) || (distance[ultrasound][0] != -1)))distance_out[ultrasound] = (distance[ultrasound][0] + distance[ultrasound][1])/2;
 		
-			if(((distance[1][0] == -1) && (distance[1][1] == -1)) || ((distance[1][0] == -1) && (distance[1][2] == -1)) || ((distance[1][2] == -1) && (distance[1][1] == -1))) distance_out[1] = -1;
+			if(((distance[ultrasound][0] == -1) && (distance[ultrasound][1] == -1)) || ((distance[ultrasound][0] == -1) && (distance[ultrasound][2] == -1)) || ((distance[ultrasound][2] == -1) && (distance[ultrasound][1] == -1))) distance_out[ultrasound] = -1;
 		}else
 		{
-		distance_out[1] = (distance[1][0] + distance[1][1] + distance[1][2])/3;
-		sprintf(b, "%d", distance_out[1]);
+		distance_out[ultrasound] = (distance[ultrasound][0] + distance[ultrasound][1] + distance[ultrasound][2])/3;
+		/*sprintf(b, "%d", distance_out[ultrasound]);
 		USART_puts(USART3, b);		
-		USART_puts(USART3, "\n");					
+		USART_puts(USART3, "\n");	*/				
 		}
-  break;
-  case 3:
-
-  break;
-  case 4:
-
-  break;
 	}
 }
