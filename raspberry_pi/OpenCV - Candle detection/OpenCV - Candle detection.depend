@@ -1,0 +1,48 @@
+# depslib dependency file v1.0
+1360781769 source:/home/kuba/projects/OpenCV - Candle detection/main.cpp
+	<cv.h>
+	<highgui.h>
+	<stdlib.h>
+	<stdio.h>
+	<iostream>
+	<sstream>
+	<uart.h>
+	<unistd.h>
+
+1340924117 /usr/local/include/opencv/cv.h
+	"opencv2/core/core_c.h"
+	"opencv2/core/core.hpp"
+	"opencv2/imgproc/imgproc_c.h"
+	"opencv2/imgproc/imgproc.hpp"
+	"opencv2/video/tracking.hpp"
+	"opencv2/features2d/features2d.hpp"
+	"opencv2/flann/flann.hpp"
+	"opencv2/calib3d/calib3d.hpp"
+	"opencv2/objdetect/objdetect.hpp"
+	"opencv2/legacy/compat.hpp"
+	"opencv2/core/internal.hpp"
+
+1340924117 /usr/local/include/opencv/highgui.h
+	"opencv2/core/core_c.h"
+	"opencv2/core/core.hpp"
+	"opencv2/highgui/highgui_c.h"
+	"opencv2/highgui/highgui.hpp"
+
+1360700015 source:/home/kuba/projects/OpenCV - Candle detection/uart.cpp
+	<string.h>
+	<termios.h>
+	<iostream>
+	<stdio.h>
+	<unistd.h>
+	<fcntl.h>
+
+1356294451 /home/kuba/projects/OpenCV - Candle detection//uart.cpp
+	<string.h>
+	<termios.h>
+	<iostream>
+	<stdio.h>
+	<unistd.h>
+	<fcntl.h>
+
+1356296181 /home/kuba/projects/OpenCV - Candle detection//uart.h
+
