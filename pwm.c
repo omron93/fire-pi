@@ -33,3 +33,21 @@ void PWM_SetDC(uint16_t channel,uint16_t dutycycle)
     TIM1->CCR4 = dutycycle;
   }
 }
+void blow(void)
+{
+	PWM_SetDC(3,150);
+	Delay(300);
+	PWM_SetDC(3,200);
+	Delay(200);
+	PWM_SetDC(3,500);
+	Delay(200);
+	PWM_SetDC(3,700);
+	Delay(400);
+	PWM_SetDC(3,1000);
+	Delay(300);
+	PWM_SetDC(3,600);
+	Delay(200);
+	PWM_SetDC(3,1000);
+	Delay(500);
+	PWM_SetDC(3,0);
+}

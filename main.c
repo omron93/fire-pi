@@ -5,6 +5,7 @@
 #include "usart.h"
 #include "pwm.h"
 #include "motor.h"
+#include "stm32f4xx_it.h"
 #include "candle_position.h"
 #include "stm32f4_discovery.h"
 
@@ -45,11 +46,12 @@ int main(void)
 		Delay_tick(delay);
 		STM_EVAL_LEDOff(LED3);
 		*/
-		PWM_SetDC(3,pulse_width++);
-		move(left, backward, pulse_width);
-		move(right, forward, pulse_width);
+		pulse_width++;
+		//move(left, forward, pulse_width);
+		//move(right, forward, pulse_width);
     if (pulse_width > 1000)
     {
+			blow();
       pulse_width = 0;
 			STM_EVAL_LEDToggle(LED6);
 			stop(left);

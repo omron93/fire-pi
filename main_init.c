@@ -45,7 +45,11 @@ void init_exti_line8(void);
 void init_PWM(void);
 void init_PWM_GPIO(void);
 void init_PWM_Timer(int period);
+void init_motor(void);
 void init_motor_GPIO(void);
+void init_motor_encoders_GPIO(void);
+void init_motor_encoders_EXTI(void);
+
 
 /* Private functions ---------------------------------------------------------*/
 void init_ALL(void)
@@ -56,6 +60,7 @@ void init_ALL(void)
 	init_USART3(115200);
 	init_ultrasonic();
 	init_PWM();
+	init_motor();
 }
 
 void init_discovery_board(void)
@@ -313,8 +318,7 @@ void init_PWM(void)
 	init_PWM_Timer(10000);
 	PWM_SetDC(1,0);
   PWM_SetDC(2,0);
-  PWM_SetDC(3,100);
-	init_motor_GPIO();
+  PWM_SetDC(3,0);
 }
 void init_PWM_GPIO(void)
 {
@@ -412,6 +416,12 @@ void init_PWM_Timer(int period)
 	
 	TIM_CtrlPWMOutputs(TIM1, ENABLE);
 }
+void init_motor(void)
+{
+	init_motor_GPIO();
+	init_motor_encoders_GPIO();
+	init_motor_encoders_EXTI();
+}
 void init_motor_GPIO(void)
 {
 	  /* GPIOC and GPIOB clock enable */
@@ -425,7 +435,50 @@ void init_motor_GPIO(void)
   GPIO_InitStructure_Motor.GPIO_PuPd = GPIO_PuPd_UP ;
   GPIO_Init(GPIOE, &GPIO_InitStructure_Motor);
 	
-	//move(left, backward, 500);
-	//move(right, forward, 600);
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
+	
+	GPIO_InitStructure_Motor.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_4;
+	GPIO_InitStructure_Motor.GPIO_Mode = GPIO_Mode_IN;
+	GPIO_InitStructure_Motor.GPIO_Speed = GPIO_Speed_100MHz;
+  GPIO_InitStructure_Motor.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_Init(GPIOD, &GPIO_InitStructure_Motor);
 }
+void init_motor_encoders_GPIO(void)
+{
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
+  /* Enable SYSCFG clock */
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+  
+  /* Configure PA0 pin as input floating */
+  GPIO_InitStructure_EXTI.GPIO_Mode = GPIO_Mode_IN;
+	GPIO_InitStructure_EXTI.GPIO_Speed = GPIO_Speed_100MHz;
+  GPIO_InitStructure_EXTI.GPIO_PuPd = GPIO_PuPd_NOPULL;
+  GPIO_InitStructure_EXTI.GPIO_Pin = GPIO_Pin_2|GPIO_Pin_6;
+  GPIO_Init(GPIOD, &GPIO_InitStructure_EXTI);
+}
+void init_motor_encoders_EXTI(void)
+{
+	/* Connect EXTI Line7 to PA0 pin */
+  SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOD, EXTI_PinSource2);
+	SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOD, EXTI_PinSource6);
 
+  /* Configure EXTI Line0 */
+  EXTI_InitStructure.EXTI_Line = EXTI_Line2 | EXTI_Line6;
+  EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+  EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
+  EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+  EXTI_Init(&EXTI_InitStructure);
+
+  /* Enable and set EXTI Line7 Interrupt to the lowest priority */
+  NVIC_InitStructure_EXTI.NVIC_IRQChannel = EXTI9_5_IRQn;
+  NVIC_InitStructure_EXTI.NVIC_IRQChannelPreemptionPriority = 0x01;
+  NVIC_InitStructure_EXTI.NVIC_IRQChannelSubPriority = 0x01;
+  NVIC_InitStructure_EXTI.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure_EXTI);
+	
+	NVIC_InitStructure_EXTI.NVIC_IRQChannel = EXTI2_IRQn;
+	NVIC_Init(&NVIC_InitStructure_EXTI);
+	
+	EXTI_GenerateSWInterrupt(EXTI_Line2);
+	EXTI_GenerateSWInterrupt(EXTI_Line6);
+}

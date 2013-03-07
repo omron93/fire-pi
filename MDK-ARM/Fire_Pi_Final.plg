@@ -3,68 +3,11 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-C:\STM32F4 Projects\Fire_Pi_Final\MDK-ARM\Fire_Pi_Final.uvproj
-Project File Date:  02/22/2013
+E:\fire_pi\fire-pi\MDK-ARM\Fire_Pi_Final.uvproj
+Project File Date:  03/05/2013
 
 <h2>Output:</h2>
 Build target 'Fire_Pi_Final'
-compiling main_init.c...
-compiling motor.c...
-linking...
-Program Size: Code=6616 RO-data=524 RW-data=204 ZI-data=1324  
-"Fire_Pi_Final.axf" - 0 Error(s), 0 Warning(s).
-Load "C:\\STM32F4 Projects\\Fire_Pi_Final\\MDK-ARM\\Fire_Pi_Final.AXF" 
-Load "C:\\STM32F4 Projects\\Fire_Pi_Final\\MDK-ARM\\Fire_Pi_Final.AXF" 
-Erase Done.
-Programming Done.
-Verify OK.
-Application running ...
-Build target 'Fire_Pi_Final'
-compiling main_init.c...
-compiling motor.c...
-linking...
-Program Size: Code=6600 RO-data=524 RW-data=204 ZI-data=1324  
-"Fire_Pi_Final.axf" - 0 Error(s), 0 Warning(s).
-Load "C:\\STM32F4 Projects\\Fire_Pi_Final\\MDK-ARM\\Fire_Pi_Final.AXF" 
-Erase Done.
-Programming Done.
-Verify OK.
-Application running ...
-Build target 'Fire_Pi_Final'
 compiling main.c...
-..\main.c(54): warning:  #223-D: function "stop" declared implicitly
-..\main.c(54): error:  #20: identifier "left" is undefined
-..\main.c(55): error:  #20: identifier "right" is undefined
-compiling main_init.c...
-compiling motor.c...
+main.c: Error: C3051E: couldn't write file 'main.o': Invalid argument
 Target not created
-Build target 'Fire_Pi_Final'
-compiling main.c...
-linking...
-Program Size: Code=6732 RO-data=524 RW-data=204 ZI-data=1324  
-"Fire_Pi_Final.axf" - 0 Error(s), 0 Warning(s).
-Load "C:\\STM32F4 Projects\\Fire_Pi_Final\\MDK-ARM\\Fire_Pi_Final.AXF" 
-Erase Done.
-Programming Done.
-Verify OK.
-Application running ...
-Build target 'Fire_Pi_Final'
-compiling motor.c...
-linking...
-Program Size: Code=6732 RO-data=524 RW-data=204 ZI-data=1324  
-"Fire_Pi_Final.axf" - 0 Error(s), 0 Warning(s).
-Load "C:\\STM32F4 Projects\\Fire_Pi_Final\\MDK-ARM\\Fire_Pi_Final.AXF" 
-Erase Done.
-Programming Done.
-Verify OK.
-Application running ...
-Build target 'Fire_Pi_Final'
-compiling main.c...
-linking...
-Program Size: Code=6728 RO-data=524 RW-data=204 ZI-data=1324  
-"Fire_Pi_Final.axf" - 0 Error(s), 0 Warning(s).
-Load "C:\\STM32F4 Projects\\Fire_Pi_Final\\MDK-ARM\\Fire_Pi_Final.AXF" 
-Erase Done.
-Programming Done.
-Verify OK.
-Application running ...

@@ -5,6 +5,7 @@
 #include "main_init.h"
 #include "delay.h"
 #include "usart.h"
+#include "stm32f4xx_it.h"
 #include "candle_position.h"
 #include "stm32f4_discovery.h"
 

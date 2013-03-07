@@ -6,4 +6,5 @@
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 void PWM_SetDC(uint16_t channel,uint16_t dutycycle);
+void blow(void);
 /* Exported variables ------------------------------------------------------- */

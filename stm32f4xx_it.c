@@ -28,6 +28,9 @@ int cnt = 0;
 int candle [2];
 ///USARTS:::::::::::::::::::::::::::::::::::::::
 
+long left_encoder = 0;
+long right_encoder = 0;
+
 int32_t counter_old_8 = 0;
 int32_t counter_8 = 0;
 int32_t distance_8 = 0;
@@ -299,7 +302,37 @@ void EXTI9_5_IRQHandler(void)
     /* Clear the EXTI line 0 pending bit */
     EXTI_ClearITPendingBit(EXTI_Line7);
   }
+	
+	if(EXTI_GetITStatus(EXTI_Line6) != RESET)
+  {
+		if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_4))
+		{
+			left_encoder--;
+		}else
+		{
+			left_encoder++;
+		}
+    /* Clear the EXTI line 0 pending bit */
+    EXTI_ClearITPendingBit(EXTI_Line6);
+  }
 }
+void EXTI2_IRQHandler(void)
+{
+	if(EXTI_GetITStatus(EXTI_Line2) != RESET)
+  {
+		if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_0))
+		{
+			right_encoder--;
+		}else
+		{
+			right_encoder++;
+		}
+    /* Clear the EXTI line 0 pending bit */
+    EXTI_ClearITPendingBit(EXTI_Line2);
+  }
+}
+
+
 /******************************************************************************/
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
