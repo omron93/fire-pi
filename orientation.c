@@ -14,6 +14,8 @@ int distance[4][3];
 int distance_out[4];
 int next_wr[4];
 char b[50];
+int ultra_pause = 20;
+int ultra_last_read = 4;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 void send_ultrasound(uint8_t ultrasound,int16_t distance_in)
@@ -48,4 +50,49 @@ void check_ultrasound(uint8_t ultrasound)
 	USART_puts(USART3, b);		
 	USART_puts(USART3, "\n");	*/				
 	}
+}
+
+void read_ultrasound_check(void)
+{
+  if (ultra_pause != 0x00)
+  { 
+    ultra_pause--;
+  }else
+	{
+		switch(ultra_last_read)
+		{
+		case 4:
+			GPIO_SetBits(GPIOE, GPIO_Pin_5);
+			Delay_tick(0x690);
+			GPIO_ResetBits(GPIOE, GPIO_Pin_5);
+			ultra_last_read = 1;
+		break;
+		case 1:
+			GPIO_SetBits(GPIOA, GPIO_Pin_15);
+			Delay_tick(0x690);
+			GPIO_ResetBits(GPIOA, GPIO_Pin_15);
+			ultra_last_read = 2;
+		break;
+		case 2:
+			GPIO_SetBits(GPIOC, GPIO_Pin_11);
+			Delay_tick(0x690);
+			GPIO_ResetBits(GPIOC, GPIO_Pin_11);
+			ultra_last_read = 3;
+		break;
+		case 3:
+			/*
+			GPIO_SetBits(GPIOA, GPIO_Pin_15);
+			Delay_tick(0x690);
+			GPIO_ResetBits(GPIOA, GPIO_Pin_15);
+			*/
+			ultra_last_read = 4;
+		break;
+		}
+
+		ultra_pause = 20;
+	}
+
+
+
+
 }

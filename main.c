@@ -23,6 +23,8 @@ int main(void)
   init_ALL();
   while (1)
   {
+		move(left, forward, 1000);
+		move(right, forward, 1000);
 		/*
 		if(STM_EVAL_PBGetState(BUTTON_USER))
 		{

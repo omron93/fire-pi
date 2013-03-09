@@ -31,6 +31,10 @@ int candle [2];
 long left_encoder = 0;
 long right_encoder = 0;
 
+int32_t counter_old_9 = 0;
+int32_t counter_9 = 0;
+int32_t distance_9 = 0;
+
 int32_t counter_old_8 = 0;
 int32_t counter_8 = 0;
 int32_t distance_8 = 0;
@@ -38,6 +42,10 @@ int32_t distance_8 = 0;
 int32_t counter_old_7 = 0;
 int32_t counter_7 = 0;
 int32_t distance_7 = 0;
+
+int32_t counter_old_6 = 0;
+int32_t counter_6 = 0;
+int32_t distance_6 = 0;
 
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
@@ -142,6 +150,7 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
   TimingDelay_Decrement();
+	read_ultrasound_check();
 }
 /**
   * @brief  This function handles USART2 Handler.
@@ -176,7 +185,7 @@ void USART2_IRQHandler(void)
 			if(i == 0)					 
 			{							
 				USART_puts(USART2, "STM32F4\n");							
-				STM_EVAL_LEDToggle(LED6);
+				//STM_EVAL_LEDToggle(LED6);
 			} 
 			
 			//USART_puts(USART3, received_string3);
@@ -248,41 +257,36 @@ void USART3_IRQHandler(void)
   */
 void EXTI9_5_IRQHandler(void)
 {
-  if(EXTI_GetITStatus(EXTI_Line8) != RESET)
+	if(EXTI_GetITStatus(EXTI_Line6) != RESET)
   {
-		counter_8 = TIM3->CNT;
-		if(GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_8))
+		
+		counter_6 = TIM3->CNT;
+		if(GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_6))
 		{
-			counter_old_8 = counter_8;
-			STM_EVAL_LEDOn(LED6);
+			counter_old_6 = counter_6;
 		}else
 		{
-			if((counter_8 > counter_old_8) && (counter_8 - counter_old_8) < 1160 )
+			if((counter_6 > counter_old_6) && (counter_6- counter_old_6) < 1160 )
 			{
-				distance_8 = ((counter_8-counter_old_8)*10)/58;
-			}else if((counter_8 < counter_old_8))
+				distance_6 = ((counter_6-counter_old_6)*10)/58;
+			}else if((counter_6 < counter_old_6))
 			{
-				distance_8 = ((50000-counter_old_8+counter_8)*10)/58;
+				distance_6 = ((50000-counter_old_6+counter_6)*10)/58;
 			}else
 			{
-				distance_8 = -1;
+				distance_6 = -1;
 			}
-			send_ultrasound (3,distance_8);
-			STM_EVAL_LEDOff(LED6);
+			send_ultrasound (1,distance_6);
 		}
-
-    
     /* Clear the EXTI line 0 pending bit */
-    EXTI_ClearITPendingBit(EXTI_Line8);
+    EXTI_ClearITPendingBit(EXTI_Line6);
   }
-	
 	if(EXTI_GetITStatus(EXTI_Line7) != RESET)
   {
 		counter_7 = TIM3->CNT;
 		if(GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_7))
 		{
 			counter_old_7 = counter_7;
-			STM_EVAL_LEDOn(LED5);
 		}else
 		{
 			if((counter_7 > counter_old_7) && (counter_7 - counter_old_7) < 1160 )
@@ -296,16 +300,69 @@ void EXTI9_5_IRQHandler(void)
 				distance_7 = -1;
 			}
 			send_ultrasound (2,distance_7);
-			STM_EVAL_LEDOff(LED5);
 		}
 
     /* Clear the EXTI line 0 pending bit */
     EXTI_ClearITPendingBit(EXTI_Line7);
   }
-	
-	if(EXTI_GetITStatus(EXTI_Line6) != RESET)
+	if(EXTI_GetITStatus(EXTI_Line8) != RESET)
   {
-		if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_4))
+		counter_8 = TIM3->CNT;
+		if(GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_8))
+		{
+			counter_old_8 = counter_8;
+		}else
+		{
+			if((counter_8 > counter_old_8) && (counter_8 - counter_old_8) < 1160 )
+			{
+				distance_8 = ((counter_8-counter_old_8)*10)/58;
+			}else if((counter_8 < counter_old_8))
+			{
+				distance_8 = ((50000-counter_old_8+counter_8)*10)/58;
+			}else
+			{
+				distance_8 = -1;
+			}
+			send_ultrasound (3,distance_8);
+		}
+
+    
+    /* Clear the EXTI line 0 pending bit */
+    EXTI_ClearITPendingBit(EXTI_Line8);
+  }
+	
+	
+	if(EXTI_GetITStatus(EXTI_Line9) != RESET)
+  {
+		counter_9 = TIM3->CNT;
+		if(GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_9))
+		{
+			counter_old_9 = counter_9;
+		}else
+		{
+			if((counter_9> counter_old_9) && (counter_9 - counter_old_9) < 1160 )
+			{
+				distance_9 = ((counter_9-counter_old_9)*10)/58;
+			}else if((counter_9 < counter_old_9))
+			{
+				distance_9 = ((50000-counter_old_9+counter_9)*10)/58;
+			}else
+			{
+				distance_9 = -1;
+			}
+			send_ultrasound (4,distance_9);
+		}
+    /* Clear the EXTI line 0 pending bit */
+    EXTI_ClearITPendingBit(EXTI_Line9);
+  }
+	
+
+}
+void EXTI0_IRQHandler(void)
+{
+	if(EXTI_GetITStatus(EXTI_Line0) != RESET)
+  {
+		if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_2))
 		{
 			left_encoder--;
 		}else
@@ -313,14 +370,14 @@ void EXTI9_5_IRQHandler(void)
 			left_encoder++;
 		}
     /* Clear the EXTI line 0 pending bit */
-    EXTI_ClearITPendingBit(EXTI_Line6);
+    EXTI_ClearITPendingBit(EXTI_Line0);
   }
 }
-void EXTI2_IRQHandler(void)
+void EXTI4_IRQHandler(void)
 {
-	if(EXTI_GetITStatus(EXTI_Line2) != RESET)
+	if(EXTI_GetITStatus(EXTI_Line4) != RESET)
   {
-		if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_0))
+		if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_6))
 		{
 			right_encoder--;
 		}else
@@ -328,7 +385,7 @@ void EXTI2_IRQHandler(void)
 			right_encoder++;
 		}
     /* Clear the EXTI line 0 pending bit */
-    EXTI_ClearITPendingBit(EXTI_Line2);
+    EXTI_ClearITPendingBit(EXTI_Line4);
   }
 }
 

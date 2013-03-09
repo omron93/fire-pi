@@ -8,30 +8,26 @@ Project File Date:  03/05/2013
 
 <h2>Output:</h2>
 Build target 'Fire_Pi_Final'
-compiling main_init.c...
-..\main_init.c(457): error:  #169: expected a declaration
-..\main_init.c(478): error:  #79: expected a type specifier
-..\main_init.c(478): warning:  #77-D: this declaration has no storage class or type specifier
-..\main_init.c(478): error:  #147: declaration is incompatible with "void EXTI_GenerateSWInterrupt(uint32_t)" (declared at line 155 of "..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_exti.h")
-..\main_init.c(479): error:  #79: expected a type specifier
-..\main_init.c(479): warning:  #77-D: this declaration has no storage class or type specifier
-..\main_init.c(480): error:  #169: expected a declaration
+compiling stm32f4xx_it.c...
+..\stm32f4xx_it.c(363): error:  #18: expected a ")"
+..\stm32f4xx_it.c(370): warning:  #12-D: parsing restarts here after previous syntax error
+..\stm32f4xx_it.c(370): error:  #127: expected a statement
 Target not created
 Build target 'Fire_Pi_Final'
-compiling main_init.c...
-linking...
-Program Size: Code=6372 RO-data=524 RW-data=204 ZI-data=1268  
-"Fire_Pi_Final.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Fire_Pi_Final'
-compiling stm32f4xx_it.c...
-compiling main_init.c...
-linking...
-Program Size: Code=6496 RO-data=524 RW-data=208 ZI-data=1272  
-"Fire_Pi_Final.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Fire_Pi_Final'
 compiling stm32f4xx_it.c...
 linking...
-Program Size: Code=6552 RO-data=524 RW-data=212 ZI-data=1268  
+Program Size: Code=7208 RO-data=524 RW-data=244 ZI-data=1268  
+"Fire_Pi_Final.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\fire-pi\\MDK-ARM\\Fire_Pi_Final.AXF" 
+Load "C:\\fire-pi\\MDK-ARM\\Fire_Pi_Final.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+Build target 'Fire_Pi_Final'
+compiling stm32f4xx_it.c...
+linking...
+Program Size: Code=7160 RO-data=524 RW-data=244 ZI-data=1268  
 "Fire_Pi_Final.axf" - 0 Error(s), 0 Warning(s).
 Load "C:\\fire-pi\\MDK-ARM\\Fire_Pi_Final.AXF" 
 Erase Done.
@@ -41,7 +37,7 @@ Application running ...
 Build target 'Fire_Pi_Final'
 compiling stm32f4xx_it.c...
 linking...
-Program Size: Code=6552 RO-data=524 RW-data=212 ZI-data=1268  
+Program Size: Code=7120 RO-data=524 RW-data=240 ZI-data=1272  
 "Fire_Pi_Final.axf" - 0 Error(s), 0 Warning(s).
 Load "C:\\fire-pi\\MDK-ARM\\Fire_Pi_Final.AXF" 
 Erase Done.
@@ -52,12 +48,7 @@ Build target 'Fire_Pi_Final'
 compiling stm32f4xx_it.c...
 compiling main_init.c...
 linking...
-Program Size: Code=6544 RO-data=524 RW-data=212 ZI-data=1268  
-"Fire_Pi_Final.axf" - 0 Error(s), 0 Warning(s).
-Build target 'Fire_Pi_Final'
-compiling main_init.c...
-linking...
-Program Size: Code=6548 RO-data=524 RW-data=212 ZI-data=1268  
+Program Size: Code=7148 RO-data=524 RW-data=244 ZI-data=1268  
 "Fire_Pi_Final.axf" - 0 Error(s), 0 Warning(s).
 Load "C:\\fire-pi\\MDK-ARM\\Fire_Pi_Final.AXF" 
 Erase Done.
@@ -67,7 +58,7 @@ Application running ...
 Build target 'Fire_Pi_Final'
 compiling main_init.c...
 linking...
-Program Size: Code=6556 RO-data=524 RW-data=212 ZI-data=1268  
+Program Size: Code=7156 RO-data=524 RW-data=244 ZI-data=1268  
 "Fire_Pi_Final.axf" - 0 Error(s), 0 Warning(s).
 Load "C:\\fire-pi\\MDK-ARM\\Fire_Pi_Final.AXF" 
 Erase Done.
@@ -77,7 +68,27 @@ Application running ...
 Build target 'Fire_Pi_Final'
 compiling main_init.c...
 linking...
-Program Size: Code=6564 RO-data=524 RW-data=212 ZI-data=1268  
+Program Size: Code=6996 RO-data=524 RW-data=244 ZI-data=1268  
+"Fire_Pi_Final.axf" - 0 Error(s), 0 Warning(s).
+Load "C:\\fire-pi\\MDK-ARM\\Fire_Pi_Final.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+Load "C:\\fire-pi\\MDK-ARM\\Fire_Pi_Final.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+Build target 'Fire_Pi_Final'
+compiling stm32f4xx_it.c...
+..\stm32f4xx_it.c(367): error:  #20: identifier "rleft_encoder" is undefined
+compiling main_init.c...
+Target not created
+Build target 'Fire_Pi_Final'
+compiling stm32f4xx_it.c...
+linking...
+Program Size: Code=7128 RO-data=524 RW-data=244 ZI-data=1268  
 "Fire_Pi_Final.axf" - 0 Error(s), 0 Warning(s).
 Load "C:\\fire-pi\\MDK-ARM\\Fire_Pi_Final.AXF" 
 Erase Done.

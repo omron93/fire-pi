@@ -41,4 +41,5 @@ motor.o: ..\main.h
 motor.o: ..\main_init.h
 motor.o: ..\delay.h
 motor.o: ..\usart.h
+motor.o: ..\stm32f4xx_it.h
 motor.o: ..\candle_position.h
