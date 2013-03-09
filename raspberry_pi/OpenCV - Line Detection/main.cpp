@@ -55,7 +55,7 @@ Mat theshold_input(Mat img)
      sat_val_xor = sat3 xor val3;
      sat_val_or = sat3 | val3;
     */
-    imshow("RR3", RR3);
+    //imshow("RR3", RR3);
     Mat element2(1,2,CV_8U,Scalar(1));
     erode(RR3,RR3,element2);
 
@@ -65,7 +65,7 @@ Mat theshold_input(Mat img)
 
     //imshow("RR2", RR2);
     // imshow("RR1", RR1);
-    // imshow("RR", RR);
+     imshow("RR", RR);
     // imshow("sat1", sat1);
     //imshow("sat2", sat2);
     // imshow("sat3", sat3);
@@ -143,7 +143,7 @@ rrr:
             {
                 minRect[i] = minAreaRect( Mat(contours[i]) );
             }
-           // if(contours.size() == 0) goto rrr;
+            if(contours.size() == 0) goto rrr;
 
             bool original[contours.size()][640];
             int line_count=-1;
