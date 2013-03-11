@@ -163,61 +163,12 @@
           <Name>-O207 -S0 -C0 -FO7 -FD20000000 -FC800 -FN1 -FF0STM32F4xx_1024 -FS08000000 -FL0100000)</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint>
-        <Bp>
-          <Number>0</Number>
-          <Type>0</Type>
-          <LineNumber>274</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>C:\fire-pi\stm32f4xx_it.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>297</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>C:\fire-pi\stm32f4xx_it.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>321</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>C:\fire-pi\stm32f4xx_it.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-      </Breakpoint>
+      <Breakpoint/>
       <WatchWindow1>
         <Ww>
           <count>0</count>
           <WinNumber>1</WinNumber>
-          <ItemText>distance,0x0A</ItemText>
+          <ItemText>distance</ItemText>
         </Ww>
         <Ww>
           <count>1</count>
@@ -237,7 +188,22 @@
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>distance_9,0x0A</ItemText>
+          <ItemText>left_encoder,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>right_encoder,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>ADC3ConvertedVoltage,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>ADC3ConvertedValue,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <DebugFlag>
@@ -288,7 +254,7 @@
       <Focus>0</Focus>
       <ColumnNumber>10</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>15</TopLine>
+      <TopLine>21</TopLine>
       <CurrentLine>16</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\main.c</PathWithFileName>
@@ -318,10 +284,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>6</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>110</TopLine>
-      <CurrentLine>367</CurrentLine>
+      <TopLine>64</TopLine>
+      <CurrentLine>151</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\stm32f4xx_it.c</PathWithFileName>
       <FilenameWithoutPath>stm32f4xx_it.c</FilenameWithoutPath>
@@ -334,10 +300,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>35</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>106</TopLine>
-      <CurrentLine>513</CurrentLine>
+      <TopLine>154</TopLine>
+      <CurrentLine>588</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\main_init.c</PathWithFileName>
       <FilenameWithoutPath>main_init.c</FilenameWithoutPath>
@@ -366,10 +332,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>1</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
-      <CurrentLine>26</CurrentLine>
+      <CurrentLine>25</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\delay.c</PathWithFileName>
       <FilenameWithoutPath>delay.c</FilenameWithoutPath>
@@ -398,10 +364,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>4</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>52</TopLine>
-      <CurrentLine>88</CurrentLine>
+      <TopLine>42</TopLine>
+      <CurrentLine>106</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\orientation.c</PathWithFileName>
       <FilenameWithoutPath>orientation.c</FilenameWithoutPath>
@@ -416,8 +382,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>17</TopLine>
-      <CurrentLine>54</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\pwm.c</PathWithFileName>
       <FilenameWithoutPath>pwm.c</FilenameWithoutPath>
@@ -430,9 +396,9 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>17</ColumnNumber>
+      <ColumnNumber>19</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>6</TopLine>
+      <TopLine>1</TopLine>
       <CurrentLine>61</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\motor.c</PathWithFileName>

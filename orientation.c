@@ -3,6 +3,7 @@
 #include "orientation.h"
 #include "delay.h"
 #include "usart.h"
+#include "main_init.h"
 #include "stm32f4_discovery.h"
 #include <stdio.h>
 
@@ -15,7 +16,9 @@ int distance_out[4];
 int next_wr[4];
 char b[50];
 int ultra_pause = 20;
+int ADC_pause = 2;
 int ultra_last_read = 4;
+int ii;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 void send_ultrasound(uint8_t ultrasound,int16_t distance_in)
@@ -91,8 +94,16 @@ void read_ultrasound_check(void)
 
 		ultra_pause = 20;
 	}
-
-
-
-
+}
+void read_ADC_check(void)
+{
+	if (ADC_pause != 0x00)
+  { 
+    ADC_pause--;
+  }else
+	{
+		for (ii = 0; ii <= 1; ii++)
+		ADC3ConvertedVoltage[ii] = ADC3ConvertedValue[ii] *3300/0xFFF;
+		ADC_pause = 2;
+	}
 }

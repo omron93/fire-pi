@@ -151,6 +151,7 @@ void SysTick_Handler(void)
 {
   TimingDelay_Decrement();
 	read_ultrasound_check();
+	read_ADC_check();
 }
 /**
   * @brief  This function handles USART2 Handler.

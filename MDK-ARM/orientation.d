@@ -39,4 +39,5 @@ orientation.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h
 orientation.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
 orientation.o: ..\delay.h
 orientation.o: ..\usart.h
+orientation.o: ..\main_init.h
 orientation.o: E:\Keil\ARM\ARMCC\bin\..\include\stdio.h
