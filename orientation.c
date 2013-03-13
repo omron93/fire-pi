@@ -105,5 +105,19 @@ void read_ADC_check(void)
 		for (ii = 0; ii <= 1; ii++)
 		ADC3ConvertedVoltage[ii] = ADC3ConvertedValue[ii] *3300/0xFFF;
 		ADC_pause = 2;
+		if(ADC3ConvertedVoltage[0]<2500)
+		{
+			STM_EVAL_LEDOn(LED3);
+		}else
+		{
+			STM_EVAL_LEDOff(LED3);
+		}
+		if(ADC3ConvertedVoltage[1]<2500)
+		{
+			STM_EVAL_LEDOn(LED5);
+		}else
+		{
+			STM_EVAL_LEDOff(LED5);
+		}
 	}
 }

@@ -35,8 +35,8 @@ DMA_InitTypeDef       DMA_InitStructure;
 #define ADC3_DR_ADDRESS    ((uint32_t)0x4001224C)
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-__IO uint32_t ADC3ConvertedVoltage[3];
-uint16_t ADC3ConvertedValue[9];
+__IO uint32_t ADC3ConvertedVoltage[2];
+uint16_t ADC3ConvertedValue[2];
 
 
 /* Private function prototypes -----------------------------------------------*/
@@ -540,7 +540,7 @@ void init_ADC(void)
   DMA_InitStructure.DMA_PeripheralBaseAddr = ((uint32_t)&ADC3->DR);
   DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)&ADC3ConvertedValue[0];
   DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;
-  DMA_InitStructure.DMA_BufferSize = 3;
+  DMA_InitStructure.DMA_BufferSize = 2;
   DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
   DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
   DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;
@@ -560,11 +560,13 @@ void init_ADC(void)
   GPIO_InitStructure_ADC.GPIO_Mode = GPIO_Mode_AN;
   GPIO_InitStructure_ADC.GPIO_PuPd = GPIO_PuPd_NOPULL ;
   GPIO_Init(GPIOC, &GPIO_InitStructure_ADC);
- 
+	
+	GPIO_InitStructure_ADC.GPIO_Pin = GPIO_Pin_1;
+	GPIO_Init(GPIOA, &GPIO_InitStructure_ADC);
  
   /* ADC Common Init **********************************************************/
   ADC_CommonInitStructure.ADC_Mode = ADC_Mode_Independent ;
-  ADC_CommonInitStructure.ADC_Prescaler = ADC_Prescaler_Div2;
+  ADC_CommonInitStructure.ADC_Prescaler = ADC_Prescaler_Div8;
   ADC_CommonInitStructure.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
   ADC_CommonInitStructure.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_5Cycles;
   ADC_CommonInit(&ADC_CommonInitStructure);
@@ -577,14 +579,13 @@ void init_ADC(void)
   ADC_InitStructure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
   ADC_InitStructure.ADC_ExternalTrigConv = 0;
   ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
-  ADC_InitStructure.ADC_NbrOfConversion = 3;
+  ADC_InitStructure.ADC_NbrOfConversion = 2;
   ADC_Init(ADC3, &ADC_InitStructure);
  
  
   /* ADC3 regular channel12 configuration *************************************/
-  ADC_RegularChannelConfig(ADC3, ADC_Channel_11, 1, ADC_SampleTime_28Cycles  );
-  ADC_RegularChannelConfig(ADC3, ADC_Channel_12, 2, ADC_SampleTime_28Cycles  );
-  ADC_RegularChannelConfig(ADC3, ADC_Channel_13, 3, ADC_SampleTime_28Cycles  );
+  ADC_RegularChannelConfig(ADC3, ADC_Channel_11, 1, ADC_SampleTime_480Cycles  );
+  ADC_RegularChannelConfig(ADC3, ADC_Channel_1, 2, ADC_SampleTime_480Cycles  );
 
  
  
