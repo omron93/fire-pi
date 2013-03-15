@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <sstream>
-#include <uart.h>
+#include "uart.h"
 #include <unistd.h>
 
 
@@ -16,13 +16,16 @@ Mat img,hsv,hue,sat,val,val1,c_out,input,threshed;
 vector<Mat> slices;
 VideoCapture san_cap(0);
 RNG rng(12345);
-
+int i;
 int   lowSliderPosition3 =242,
                           highSliderPosition3 = 0,
                                   brightness = 50;
 
 char buffer[100];
 uint32_t max;
+
+bool GUI = false;
+
 Mat theshold_input(Mat img)
 {
     cvtColor(img, hsv, CV_RGB2HSV);
@@ -78,26 +81,45 @@ Mat theshold_input(Mat img)
 }
 int init_opencv()
 {
-    cvNamedWindow("bars",CV_WINDOW_NORMAL);
-
-    cvCreateTrackbar("Low val", "bars", &lowSliderPosition3, 255, 0);
-    cvCreateTrackbar("High val", "bars", &highSliderPosition3, 255, 0);
-
-    cvCreateTrackbar("Brigtness", "bars", &brightness, 100, 0);
-
+    if(GUI == true)
+    {
+        cvNamedWindow("bars",CV_WINDOW_NORMAL);
+        cvCreateTrackbar("Low val", "bars", &lowSliderPosition3, 255, 0);
+        cvCreateTrackbar("High val", "bars", &highSliderPosition3, 255, 0);
+        cvCreateTrackbar("Brigtness", "bars", &brightness, 100, 0);
+    }
     san_cap.VideoCapture::set(CV_CAP_PROP_FRAME_WIDTH,320);
     san_cap.VideoCapture::set(CV_CAP_PROP_FRAME_HEIGHT,240);
     san_cap.VideoCapture::set(CV_CAP_PROP_BRIGHTNESS,0.5);
+    san_cap.VideoCapture::set(CV_CAP_PROP_HUE,0.5);
+    san_cap.VideoCapture::set(CV_CAP_PROP_GAIN,0.20);
+    san_cap.VideoCapture::set(CV_CAP_PROP_EXPOSURE,0.45);
 
     cout << "Width of frame: " <<  san_cap.VideoCapture::get(CV_CAP_PROP_FRAME_WIDTH) << endl; 		// Width of the frames in the video stream
     cout << "Height of frame: " << san_cap.VideoCapture::get(CV_CAP_PROP_FRAME_HEIGHT) << endl; 	// Height of the frames in the video stream
     cout << "Image brightness: " << san_cap.VideoCapture::get(CV_CAP_PROP_BRIGHTNESS) << endl; 	// Brightness of the image (only for cameras)
+    cout << "Image hue: " << san_cap.VideoCapture::get(CV_CAP_PROP_HUE)<< endl;
+    cout << "Image gain: " << san_cap.VideoCapture::get(CV_CAP_PROP_GAIN)<< endl;
+    cout << "Image exposure: " << san_cap.VideoCapture::get(CV_CAP_PROP_EXPOSURE)<< endl;
     return 0;
 }
 
 
-int main()
+int main( int argc, const char** argv )
 {
+
+
+    if(argc ==2)
+    {
+        char *s2 = "-g";
+        int i = strcmp(argv[1], s2);
+        printf("argv[%d] = %s\n", i, argv[1]);
+        if(i == 0)
+        {
+            GUI = true;
+        }
+    }
+
     init_UART();
     while(connect_STM32F4() == 0);
 
@@ -113,11 +135,11 @@ int main()
 
             san_cap.read(c_out);
             int waitKeyValue = 10;
-            imshow("input", c_out);
+            if(GUI == true)imshow("input", c_out);
             input = c_out;
 
             threshed = theshold_input(c_out);
-            imshow("thrasholded", threshed);
+            if(GUI == true)imshow("thrasholded", threshed);
             //cvtColor(threshed, threshed, CV_RGB2HSV);
 
             vector<vector<Point> > contours;
@@ -183,38 +205,54 @@ int main()
 
 
 
-                        ///send biggest one
-                        stringstream sd;
-                        sd << "c|" << (int)mc[contours.size()-1].x << "/" << (int)mc[contours.size()-1].y << "\n";
-                        std::string s = sd.str();
-                        const char *Candle_Pos = s.c_str();
+                ///send biggest one
+                stringstream sd;
+                sd << "c|" << (int)mc[contours.size()-1].x << "/" << (int)mc[contours.size()-1].y << "\n";
+                std::string s = sd.str();
+                const char *Candle_Pos = s.c_str();
 
-                        sd.seekg(0, ios::end);
-                        int sizee = sd.tellg();
+                sd.seekg(0, ios::end);
+                int sizee = sd.tellg();
 
 
-                        if(sizee < 11)
-                        {
-                            write(fd, Candle_Pos, sizee);
-                            //printf("Trigger: %s\n", Candle_Pos);
-                          /*  if(sizeof(buffer) != -1)
-                            {
+                if(sizee < 11)
+                {
+                    write(fd, Candle_Pos, sizee);
+                    //printf("Trigger: %s\n", Candle_Pos);
+                    /*  if(sizeof(buffer) != -1)
+                      {
 
-                                int n = read(fd, buffer, sizeof(buffer));
+                          int n = read(fd, buffer, sizeof(buffer));
 
-                                printf("Echo: %s\n", buffer);
-                                memset(&buffer, 0, sizeof buffer);
-                            }
-                            */
-                        }
+                          printf("Echo: %s\n", buffer);
+                          memset(&buffer, 0, sizeof buffer);
+                      }
+                      */
+                }
 
-             }
+            }
+            else
+            {
+                stringstream sd;
+                sd << "cn|" << "0" << "\n";
+                std::string s = sd.str();
+                const char *candle_no = s.c_str();
+
+                sd.seekg(0, ios::end);
+                int sizee = sd.tellg();
+
+
+                if(sizee < 11)
+                {
+                    write(fd, candle_no, sizee);
+                }
+            }
 
             line( input, Point(0, 120), Point(640, 120), Scalar(255,50,0), 2, CV_AA);
             line( input, Point(0, 40), Point(640, 40), Scalar(0,50,255), 2, CV_AA);
             /// Show in a window
-            namedWindow( "Contours", CV_WINDOW_AUTOSIZE );
-            imshow( "Contours", input );
+            if(GUI == true)namedWindow( "Contours", CV_WINDOW_AUTOSIZE );
+            if(GUI == true) imshow( "Contours", input );
 
             //usleep(100000);
 
