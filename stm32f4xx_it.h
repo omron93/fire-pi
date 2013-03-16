@@ -3,8 +3,8 @@
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
-export long left_encoder = 0;
-export long right_encoder = 0;
+//extern long left_encoder = 0;
+//extern long right_encoder = 0;
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 void NMI_Handler(void);

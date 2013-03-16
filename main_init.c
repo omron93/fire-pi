@@ -16,6 +16,7 @@ GPIO_InitTypeDef GPIO_InitStructure_Ultrasonic; //Ultrasonic pins
 GPIO_InitTypeDef GPIO_InitStructure_EXTI; // configure EXTI GPIO
 GPIO_InitTypeDef GPIO_InitStructure_PWM;
 GPIO_InitTypeDef GPIO_InitStructure_Motor;
+GPIO_InitTypeDef GPIO_InitStructure_ADC;
 USART_InitTypeDef USART_InitStruct_USART2; // USART2 initilization
 USART_InitTypeDef USART_InitStruct_USART3; // USART3 initilization
 NVIC_InitTypeDef NVIC_InitStructure_USART2; // configure NVIC (nested vector interrupt controller)
@@ -25,10 +26,19 @@ EXTI_InitTypeDef EXTI_InitStructure; //configure External Interups
 TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure_Ultrasonic;
 TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure_PWM;
 TIM_OCInitTypeDef TIM_OCInitStructure_PWM;
+ADC_InitTypeDef       ADC_InitStructure;
+ADC_CommonInitTypeDef ADC_CommonInitStructure;
+DMA_InitTypeDef       DMA_InitStructure;
+
 
 /* Private define ------------------------------------------------------------*/
+#define ADC3_DR_ADDRESS    ((uint32_t)0x4001224C)
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+__IO uint32_t ADC3ConvertedVoltage[2];
+uint16_t ADC3ConvertedValue[2];
+
+
 /* Private function prototypes -----------------------------------------------*/
 void init_ALL(void);
 void init_discovery_board(void);
@@ -40,15 +50,17 @@ void init_ultrasonic_pins(void);
 void init_ultrasonic_timer(void);
 void init_exti(void);
 void init_exti_GPIO(void);
+void init_exti_line6(void);
 void init_exti_line7(void);
 void init_exti_line8(void);
+void init_exti_line9(void);
 void init_PWM(void);
 void init_PWM_GPIO(void);
 void init_PWM_Timer(int period);
 void init_motor(void);
 void init_motor_GPIO(void);
-void init_motor_encoders_GPIO(void);
 void init_motor_encoders_EXTI(void);
+void init_ADC(void);
 
 
 /* Private functions ---------------------------------------------------------*/
@@ -61,6 +73,7 @@ void init_ALL(void)
 	init_ultrasonic();
 	init_PWM();
 	init_motor();
+	init_ADC();
 }
 
 void init_discovery_board(void)
@@ -216,7 +229,7 @@ void init_ultrasonic(void)
 
 void init_ultrasonic_pins(void)
 {
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA|RCC_AHB1Periph_GPIOC, ENABLE);
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA|RCC_AHB1Periph_GPIOC|RCC_AHB1Periph_GPIOE, ENABLE);
 
   /* Configure PD12, PD13, PD14 and PD15 in output pushpull mode */
   GPIO_InitStructure_Ultrasonic.GPIO_Pin = GPIO_Pin_15;
@@ -228,6 +241,9 @@ void init_ultrasonic_pins(void)
 	
 	GPIO_InitStructure_Ultrasonic.GPIO_Pin = GPIO_Pin_11;
 	GPIO_Init(GPIOC, &GPIO_InitStructure_Ultrasonic);
+	
+	GPIO_InitStructure_Ultrasonic.GPIO_Pin = GPIO_Pin_5;
+	GPIO_Init(GPIOE, &GPIO_InitStructure_Ultrasonic);
 
 
 }
@@ -252,10 +268,14 @@ void init_ultrasonic_timer(void)
 void init_exti(void)
 {
 	init_exti_GPIO();
+	init_exti_line6();
 	init_exti_line7();
 	init_exti_line8();
+	init_exti_line9();
+	EXTI_GenerateSWInterrupt(EXTI_Line6);
 	EXTI_GenerateSWInterrupt(EXTI_Line7);
 	EXTI_GenerateSWInterrupt(EXTI_Line8);
+	EXTI_GenerateSWInterrupt(EXTI_Line9);
 }
 void init_exti_GPIO(void)
 {
@@ -268,9 +288,28 @@ void init_exti_GPIO(void)
   GPIO_InitStructure_EXTI.GPIO_Mode = GPIO_Mode_IN;
 	GPIO_InitStructure_EXTI.GPIO_Speed = GPIO_Speed_100MHz;
   GPIO_InitStructure_EXTI.GPIO_PuPd = GPIO_PuPd_NOPULL;
-  GPIO_InitStructure_EXTI.GPIO_Pin = GPIO_Pin_7|GPIO_Pin_8;
+  GPIO_InitStructure_EXTI.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
   GPIO_Init(GPIOC, &GPIO_InitStructure_EXTI);
 }	
+void init_exti_line6(void)
+{
+/* Connect EXTI Line0 to PA0 pin */
+  SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOC, EXTI_PinSource6);
+
+  /* Configure EXTI Line0 */
+  EXTI_InitStructure.EXTI_Line = EXTI_Line6;
+  EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+  EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling;  
+  EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+  EXTI_Init(&EXTI_InitStructure);
+
+  /* Enable and set EXTI Line0 Interrupt to the lowest priority */
+  NVIC_InitStructure_EXTI.NVIC_IRQChannel = EXTI9_5_IRQn;
+  NVIC_InitStructure_EXTI.NVIC_IRQChannelPreemptionPriority = 0x01;
+  NVIC_InitStructure_EXTI.NVIC_IRQChannelSubPriority = 0x01;
+  NVIC_InitStructure_EXTI.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure_EXTI);
+}
 void init_exti_line7(void)
 {
 /* Connect EXTI Line7 to PA0 pin */
@@ -300,6 +339,25 @@ void init_exti_line8(void)
 
   /* Configure EXTI Line0 */
   EXTI_InitStructure.EXTI_Line = EXTI_Line8;
+  EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+  EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling;  
+  EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+  EXTI_Init(&EXTI_InitStructure);
+
+  /* Enable and set EXTI Line0 Interrupt to the lowest priority */
+  NVIC_InitStructure_EXTI.NVIC_IRQChannel = EXTI9_5_IRQn;
+  NVIC_InitStructure_EXTI.NVIC_IRQChannelPreemptionPriority = 0x01;
+  NVIC_InitStructure_EXTI.NVIC_IRQChannelSubPriority = 0x01;
+  NVIC_InitStructure_EXTI.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure_EXTI);
+}
+void init_exti_line9(void)
+{
+/* Connect EXTI Line0 to PA0 pin */
+  SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOC, EXTI_PinSource9);
+
+  /* Configure EXTI Line0 */
+  EXTI_InitStructure.EXTI_Line = EXTI_Line9;
   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
   EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling;  
   EXTI_InitStructure.EXTI_LineCmd = ENABLE;
@@ -419,7 +477,6 @@ void init_PWM_Timer(int period)
 void init_motor(void)
 {
 	init_motor_GPIO();
-	init_motor_encoders_GPIO();
 	init_motor_encoders_EXTI();
 }
 void init_motor_GPIO(void)
@@ -436,49 +493,112 @@ void init_motor_GPIO(void)
   GPIO_Init(GPIOE, &GPIO_InitStructure_Motor);
 	
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
 	
-	GPIO_InitStructure_Motor.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_4;
+	GPIO_InitStructure_Motor.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_2 | GPIO_Pin_4 | GPIO_Pin_6;
 	GPIO_InitStructure_Motor.GPIO_Mode = GPIO_Mode_IN;
 	GPIO_InitStructure_Motor.GPIO_Speed = GPIO_Speed_100MHz;
   GPIO_InitStructure_Motor.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_Init(GPIOD, &GPIO_InitStructure_Motor);
 }
-void init_motor_encoders_GPIO(void)
-{
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
-  /* Enable SYSCFG clock */
-  RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
-  
-  /* Configure PA0 pin as input floating */
-  GPIO_InitStructure_EXTI.GPIO_Mode = GPIO_Mode_IN;
-	GPIO_InitStructure_EXTI.GPIO_Speed = GPIO_Speed_100MHz;
-  GPIO_InitStructure_EXTI.GPIO_PuPd = GPIO_PuPd_NOPULL;
-  GPIO_InitStructure_EXTI.GPIO_Pin = GPIO_Pin_2|GPIO_Pin_6;
-  GPIO_Init(GPIOD, &GPIO_InitStructure_EXTI);
-}
+
 void init_motor_encoders_EXTI(void)
 {
 	/* Connect EXTI Line7 to PA0 pin */
-  SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOD, EXTI_PinSource2);
-	SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOD, EXTI_PinSource6);
+  SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOD, EXTI_PinSource0);
+	SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOD, EXTI_PinSource4);
 
   /* Configure EXTI Line0 */
-  EXTI_InitStructure.EXTI_Line = EXTI_Line2 | EXTI_Line6;
+  EXTI_InitStructure.EXTI_Line = EXTI_Line0 | EXTI_Line4;
   EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
   EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;  
   EXTI_InitStructure.EXTI_LineCmd = ENABLE;
   EXTI_Init(&EXTI_InitStructure);
 
   /* Enable and set EXTI Line7 Interrupt to the lowest priority */
-  NVIC_InitStructure_EXTI.NVIC_IRQChannel = EXTI9_5_IRQn;
+  NVIC_InitStructure_EXTI.NVIC_IRQChannel = EXTI0_IRQn;
   NVIC_InitStructure_EXTI.NVIC_IRQChannelPreemptionPriority = 0x01;
   NVIC_InitStructure_EXTI.NVIC_IRQChannelSubPriority = 0x01;
   NVIC_InitStructure_EXTI.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure_EXTI);
 	
-	NVIC_InitStructure_EXTI.NVIC_IRQChannel = EXTI2_IRQn;
+	NVIC_InitStructure_EXTI.NVIC_IRQChannel = EXTI4_IRQn;
 	NVIC_Init(&NVIC_InitStructure_EXTI);
 	
-	EXTI_GenerateSWInterrupt(EXTI_Line2);
-	EXTI_GenerateSWInterrupt(EXTI_Line6);
+	EXTI_GenerateSWInterrupt(EXTI_Line0);
+	EXTI_GenerateSWInterrupt(EXTI_Line4);
+}
+void init_ADC(void)
+{
+	/* Enable ADC3, DMA2 and GPIO clocks ****************************************/
+  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2 | RCC_AHB1Periph_GPIOC, ENABLE);
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC3, ENABLE);
+	
+ 
+  /* DMA2 Stream0 channel0 configuration **************************************/
+  DMA_InitStructure.DMA_Channel = DMA_Channel_2;  
+  DMA_InitStructure.DMA_PeripheralBaseAddr = ((uint32_t)&ADC3->DR);
+  DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)&ADC3ConvertedValue[0];
+  DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;
+  DMA_InitStructure.DMA_BufferSize = 2;
+  DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+  DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+  DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;
+  DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;
+  DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;
+  DMA_InitStructure.DMA_Priority = DMA_Priority_High;
+  DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;         
+  DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_HalfFull;
+  DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;
+  DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
+  DMA_Init(DMA2_Stream0, &DMA_InitStructure);
+  DMA_Cmd(DMA2_Stream0, ENABLE);
+ 
+ 
+  /* Configure ADC3 Channel12 pin as analog input ******************************/
+  GPIO_InitStructure_ADC.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3;
+  GPIO_InitStructure_ADC.GPIO_Mode = GPIO_Mode_AN;
+  GPIO_InitStructure_ADC.GPIO_PuPd = GPIO_PuPd_NOPULL ;
+  GPIO_Init(GPIOC, &GPIO_InitStructure_ADC);
+	
+	GPIO_InitStructure_ADC.GPIO_Pin = GPIO_Pin_1;
+	GPIO_Init(GPIOA, &GPIO_InitStructure_ADC);
+ 
+  /* ADC Common Init **********************************************************/
+  ADC_CommonInitStructure.ADC_Mode = ADC_Mode_Independent ;
+  ADC_CommonInitStructure.ADC_Prescaler = ADC_Prescaler_Div8;
+  ADC_CommonInitStructure.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
+  ADC_CommonInitStructure.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_5Cycles;
+  ADC_CommonInit(&ADC_CommonInitStructure);
+ 
+ 
+  /* ADC3 Init ****************************************************************/
+  ADC_InitStructure.ADC_Resolution = ADC_Resolution_12b;
+  ADC_InitStructure.ADC_ScanConvMode = ENABLE;
+  ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;
+  ADC_InitStructure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
+  ADC_InitStructure.ADC_ExternalTrigConv = 0;
+  ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
+  ADC_InitStructure.ADC_NbrOfConversion = 2;
+  ADC_Init(ADC3, &ADC_InitStructure);
+ 
+ 
+  /* ADC3 regular channel12 configuration *************************************/
+  ADC_RegularChannelConfig(ADC3, ADC_Channel_11, 1, ADC_SampleTime_480Cycles  );
+  ADC_RegularChannelConfig(ADC3, ADC_Channel_1, 2, ADC_SampleTime_480Cycles  );
+
+ 
+ 
+  ADC_DMARequestAfterLastTransferCmd(ADC3, ENABLE);
+ 
+ 
+  /* Enable ADC3 DMA */
+  ADC_DMACmd(ADC3, ENABLE);
+ 
+ 
+  /* Enable ADC3 */
+  ADC_Cmd(ADC3, ENABLE);
+ 
+ 
+  ADC_SoftwareStartConv(ADC3);
 }
