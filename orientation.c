@@ -9,6 +9,13 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
+#define left 0
+#define left_voltage 2400
+#define right 1
+#define right_voltage 2400
+#define left_ultra 2
+#define right_ultra 1
+#define center_ultra 0
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 int distance[4][3];
@@ -19,6 +26,9 @@ int ultra_pause = 20;
 int ADC_pause = 2;
 int ultra_last_read = 4;
 int ii;
+
+int left_white;
+int right_white;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 void send_ultrasound(uint8_t ultrasound,int16_t distance_in)
@@ -105,19 +115,23 @@ void read_ADC_check(void)
 		for (ii = 0; ii <= 1; ii++)
 		ADC3ConvertedVoltage[ii] = ADC3ConvertedValue[ii] *3300/0xFFF;
 		ADC_pause = 2;
-		if(ADC3ConvertedVoltage[0]<2500)
+		if(ADC3ConvertedVoltage[left] < left_voltage)
 		{
-			STM_EVAL_LEDOn(LED3);
+			left_white = 1;
+			//STM_EVAL_LEDOn(LED3);
 		}else
 		{
-			STM_EVAL_LEDOff(LED3);
+			left_white = 0;
+			//STM_EVAL_LEDOff(LED3);
 		}
-		if(ADC3ConvertedVoltage[1]<2500)
+		if(ADC3ConvertedVoltage[right] < right_voltage)
 		{
-			STM_EVAL_LEDOn(LED5);
+			right_white = 1;
+			//STM_EVAL_LEDOn(LED5);
 		}else
 		{
-			STM_EVAL_LEDOff(LED5);
+			right_white = 0;
+			//STM_EVAL_LEDOff(LED5);
 		}
 	}
 }

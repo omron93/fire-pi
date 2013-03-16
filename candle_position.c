@@ -7,34 +7,36 @@
 #include <stdio.h>
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
-#define LEFT 140
-#define RIGHT 180
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 char a[50];
+int candle_pos;
+int candle_saw;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 void candle_position(int x, int z)
 {
-if(x > RIGHT)
+	candle_pos = x;
+	
+if(x > RIGHT_CANDLE)
 	{
 		
 		STM_EVAL_LEDOn(LED5);
 		STM_EVAL_LEDOff(LED4);
-		STM_EVAL_LEDOff(LED3);
+		//STM_EVAL_LEDOff(LED3);
 		USART_puts(USART2, "right");
 	}
-	else if(x < LEFT)
+	else if(x < LEFT_CANDLE)
 	{
 		USART_puts(USART2, "left");
 		STM_EVAL_LEDOn(LED4);	
 		STM_EVAL_LEDOff(LED5);
-		STM_EVAL_LEDOff(LED3);
+		//STM_EVAL_LEDOff(LED3);
 	}
 	else 
 	{
 			USART_puts(USART2, "center");
-		STM_EVAL_LEDOn(LED3);
+		//STM_EVAL_LEDOn(LED3);
 		STM_EVAL_LEDOff(LED5);
 		STM_EVAL_LEDOff(LED4);
 	}

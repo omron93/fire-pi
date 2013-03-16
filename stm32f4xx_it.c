@@ -205,13 +205,22 @@ void USART2_IRQHandler(void)
 								while (ps != NULL)	
 								{
 									sscanf (ps, "%d", &candle[cnt]);
-
  									ps = strtok (NULL, "/");	
 									cnt++;
 								}
-								
-								//candle_position(candle [0],candle [1]);
+								candle_saw = 2;
+								candle_position(candle [0],candle [1]);
+								STM_EVAL_LEDOff(LED3);
+								STM_EVAL_LEDOn(LED6);
 								cnt = 0;
+					}
+					s1 = "cn";		
+					i = strcmp(s1, ps);		
+					if(i == 0)					 
+					{										
+								candle_saw = 1;
+								STM_EVAL_LEDOn(LED3);
+								STM_EVAL_LEDOff(LED6);
 					}
 					ps = strtok (NULL, "|");	 
 			}		

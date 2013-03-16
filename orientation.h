@@ -4,6 +4,8 @@
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 extern int distance_out[4];
+extern int left_white;
+extern int right_white;
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 void send_ultrasound(uint8_t ultrasound,int16_t distance_in);

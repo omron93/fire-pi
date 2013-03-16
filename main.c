@@ -5,6 +5,7 @@
 #include "usart.h"
 #include "pwm.h"
 #include "motor.h"
+#include "orientation.h"
 #include "stm32f4xx_it.h"
 #include "candle_position.h"
 #include "stm32f4_discovery.h"
@@ -23,8 +24,6 @@ int main(void)
   init_ALL();
   while (1)
   {
-		move(left, forward, 1000);
-		move(right, forward, 1000);
 		/*
 		if(STM_EVAL_PBGetState(BUTTON_USER))
 		{
@@ -47,7 +46,7 @@ int main(void)
 		GPIO_ResetBits(GPIOC, GPIO_Pin_11);
 		Delay_tick(delay);
 		STM_EVAL_LEDOff(LED3);
-		*/
+		*//*
 		pulse_width++;
 		//move(left, forward, pulse_width);
 		//move(right, forward, pulse_width);
@@ -61,7 +60,53 @@ int main(void)
 			Delay(8000);
     }
     Delay_tick(1000000);
-  }
+		*/
+		
+		if(candle_saw == 2)
+		{
+			if(candle_pos > RIGHT_CANDLE)
+			{
+				/*
+				STM_EVAL_LEDOn(LED5);
+				STM_EVAL_LEDOff(LED4);
+				STM_EVAL_LEDOff(LED3);*/
+				//USART_puts(USART2, "right");
+				move(left, forward, 1000);
+				move(right, backward, 1000);
+			}
+			else if(candle_pos < LEFT_CANDLE)
+			{
+				//USART_puts(USART2, "left");
+				/*STM_EVAL_LEDOn(LED4);	
+				STM_EVAL_LEDOff(LED5);
+				STM_EVAL_LEDOff(LED3);*/
+				move(left, backward, 1000);
+				move(right, forward, 1000);
+			}
+			else 
+			{
+				//	USART_puts(USART2, "center");
+				/*STM_EVAL_LEDOn(LED3);
+				STM_EVAL_LEDOff(LED5);
+				STM_EVAL_LEDOff(LED4);*/
+				blow();
+			}
+		}else if(candle_saw == 1)
+		{
+			if(distance_out[0] < 30)
+			{
+				move(left, forward, 1000);
+				move(right, backward, 1000);
+			}else
+			{
+				move(left, forward, 1000);
+				move(right, forward, 1000);
+			}
+		}else
+		{
+			
+		}
+	}
 }
 
 
