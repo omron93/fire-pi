@@ -133,7 +133,8 @@ int main(void)
 
 
 		//move_unit_single(left, forward, 800, degree, 180);
-		move_unit_double(forward, 800, length, 20);
+		//move_unit_double(forward, 800, length, 20);
+		move_robot_degree(90, 800);
 		stop(left,block);
 		stop(right,block);
 		Delay(10000);

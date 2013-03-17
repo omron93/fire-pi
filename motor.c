@@ -23,6 +23,8 @@ int block_left;
 int block_left_pos;
 int block_right;
 int block_right_pos;
+
+
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 void move(int motor, int way, int torque)
@@ -148,4 +150,22 @@ void move_unit_double(int way, int torque, int unit, int num)
 				move(right, way, torque);
 			}
 		}
+}
+void move_robot_degree(int degr, int torque)
+{
+	int way_length = 90;//((2*3 * 15)/360)*90;
+	
+	if(degr < 0)
+	{
+		stop(left,block);
+		move_unit_single(right, forward, torque, length, way_length);
+	}else if(degr > 0)
+	{
+		stop(right,block);
+		move_unit_single(left, forward, torque, length, way_length);
+	}else
+	{
+		stop(right,block);
+		move_unit_single(left, forward, torque, length, 50);
+	}
 }
