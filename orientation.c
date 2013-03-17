@@ -13,9 +13,6 @@
 #define left_voltage 2400
 #define right 1
 #define right_voltage 2400
-#define left_ultra 2
-#define right_ultra 1
-#define center_ultra 0
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 int distance[4][3];
@@ -55,7 +52,7 @@ void check_ultrasound(uint8_t ultrasound)
 		if((distance[ultrasound][1] == -1) && ((distance[ultrasound][0] != -1) || (distance[ultrasound][2] != -1)))distance_out[ultrasound] = (distance[ultrasound][0] + distance[ultrasound][2])/2;
 		if((distance[ultrasound][2] == -1) && ((distance[ultrasound][1] != -1) || (distance[ultrasound][0] != -1)))distance_out[ultrasound] = (distance[ultrasound][0] + distance[ultrasound][1])/2;
 	
-		if(((distance[ultrasound][0] == -1) && (distance[ultrasound][1] == -1)) || ((distance[ultrasound][0] == -1) && (distance[ultrasound][2] == -1)) || ((distance[ultrasound][2] == -1) && (distance[ultrasound][1] == -1))) distance_out[ultrasound] = -1;
+		if(((distance[ultrasound][0] == -1) && (distance[ultrasound][1] == -1)) || ((distance[ultrasound][0] == -1) && (distance[ultrasound][2] == -1)) || ((distance[ultrasound][2] == -1) && (distance[ultrasound][1] == -1))) distance_out[ultrasound] = 1000;
 	}else
 	{
 	distance_out[ultrasound] = (distance[ultrasound][0] + distance[ultrasound][1] + distance[ultrasound][2])/3;

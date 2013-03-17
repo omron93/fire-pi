@@ -41,5 +41,6 @@ stm32f4xx_it.o: ..\usart.h
 stm32f4xx_it.o: ..\delay.h
 stm32f4xx_it.o: ..\candle_position.h
 stm32f4xx_it.o: ..\orientation.h
+stm32f4xx_it.o: ..\motor.h
 stm32f4xx_it.o: E:\Keil\ARM\ARMCC\bin\..\include\string.h
 stm32f4xx_it.o: E:\Keil\ARM\ARMCC\bin\..\include\stdio.h

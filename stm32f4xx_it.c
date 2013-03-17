@@ -5,6 +5,7 @@
 #include "delay.h"
 #include "candle_position.h"
 #include "orientation.h"
+#include "motor.h"
 #include <misc.h>	
 #include <string.h>
 #include <stdio.h>
@@ -208,7 +209,7 @@ void USART2_IRQHandler(void)
  									ps = strtok (NULL, "/");	
 									cnt++;
 								}
-								candle_saw = 2;
+								candle_saw = 1;
 								candle_position(candle [0],candle [1]);
 								STM_EVAL_LEDOff(LED3);
 								STM_EVAL_LEDOn(LED6);
@@ -218,7 +219,7 @@ void USART2_IRQHandler(void)
 					i = strcmp(s1, ps);		
 					if(i == 0)					 
 					{										
-								candle_saw = 1;
+								candle_saw = 0;
 								STM_EVAL_LEDOn(LED3);
 								STM_EVAL_LEDOff(LED6);
 					}
@@ -379,6 +380,24 @@ void EXTI0_IRQHandler(void)
 		{
 			left_encoder++;
 		}
+		if(block_left == block)
+		{
+			if((left_encoder == block_left_pos-2)||(left_encoder == block_left_pos+2))
+			{
+				GPIO_SetBits(GPIOE, logicleft1);
+				GPIO_SetBits(GPIOE, logicleft2);
+			}
+			else if(left_encoder > block_left_pos+1)
+			{
+				GPIO_SetBits(GPIOE, logicleft2);
+				GPIO_ResetBits(GPIOE, logicleft1);
+			}else if(left_encoder < block_left_pos-1)
+			{
+				GPIO_SetBits(GPIOE, logicleft1);
+				GPIO_ResetBits(GPIOE, logicleft2);
+			}
+		}
+			
     /* Clear the EXTI line 0 pending bit */
     EXTI_ClearITPendingBit(EXTI_Line0);
   }
@@ -393,6 +412,23 @@ void EXTI4_IRQHandler(void)
 		}else
 		{
 			right_encoder++;
+		}
+		if(block_right == block)
+		{
+			if((right_encoder == block_right_pos-2)||(right_encoder == block_right_pos+2))
+			{
+				GPIO_SetBits(GPIOE, logicright1);
+				GPIO_SetBits(GPIOE, logicright2);
+			}else	if(right_encoder > block_right_pos+1)
+			{
+				GPIO_SetBits(GPIOE, logicright2);
+				GPIO_ResetBits(GPIOE, logicright1);
+			}else if(right_encoder < block_right_pos-1)
+			{
+				GPIO_SetBits(GPIOE, logicright1);
+				GPIO_ResetBits(GPIOE, logicright2);
+			}
+
 		}
     /* Clear the EXTI line 0 pending bit */
     EXTI_ClearITPendingBit(EXTI_Line4);

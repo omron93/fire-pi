@@ -62,26 +62,34 @@ int main(void)
     Delay_tick(1000000);
 		*/
 		
-		if(candle_saw == 2)
+	
+		if(candle_saw == 1)
 		{
 			if(candle_pos > RIGHT_CANDLE)
 			{
+				stop(left,coast);
+				stop(right,coast);
+				Delay(300);
 				/*
 				STM_EVAL_LEDOn(LED5);
 				STM_EVAL_LEDOff(LED4);
 				STM_EVAL_LEDOff(LED3);*/
 				//USART_puts(USART2, "right");
-				move(left, forward, 1000);
-				move(right, backward, 1000);
+				move(left, backward, 600);
+				move(right, forward, 600);				
+				
 			}
 			else if(candle_pos < LEFT_CANDLE)
 			{
+				stop(left,coast);
+				stop(right,coast);
+				Delay(300);
 				//USART_puts(USART2, "left");
 				/*STM_EVAL_LEDOn(LED4);	
 				STM_EVAL_LEDOff(LED5);
 				STM_EVAL_LEDOff(LED3);*/
-				move(left, backward, 1000);
-				move(right, forward, 1000);
+				move(left, forward, 600);
+				move(right, backward, 600);
 			}
 			else 
 			{
@@ -89,23 +97,46 @@ int main(void)
 				/*STM_EVAL_LEDOn(LED3);
 				STM_EVAL_LEDOff(LED5);
 				STM_EVAL_LEDOff(LED4);*/
+				stop(left,coast);
+				stop(right,coast);
+				Delay(500);
 				blow();
 			}
-		}else if(candle_saw == 1)
+		}else if(candle_saw == 20)
 		{
-			if(distance_out[0] < 30)
+			if((distance_out[center_ultra] < 30)||(distance_out[left_ultra] < 30)||(distance_out[right_ultra] < 30))
 			{
-				move(left, forward, 1000);
-				move(right, backward, 1000);
+				/*if(distance_out[right_ultra] < 30)
+				{
+					//move(left, forward, 800);
+					move(right, backward, 800);
+				}else if(distance_out[left_ultra] < 30)
+				{
+					move(left, backward, 800);
+					//move(right, forward, 800);
+				}	else
+				{*/
+					move(left, backward, 800);
+					move(right, forward, 800);
+				//}	
 			}else
 			{
-				move(left, forward, 1000);
-				move(right, forward, 1000);
+				move(left, forward, 800);
+				move(right, forward, 800);
 			}
+			
 		}else
 		{
 			
+
 		}
+
+
+		//move_unit_single(left, forward, 800, degree, 180);
+		move_unit_double(forward, 800, length, 20);
+		stop(left,block);
+		stop(right,block);
+		Delay(10000);
 	}
 }
 

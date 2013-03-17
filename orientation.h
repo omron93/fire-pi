@@ -3,6 +3,9 @@
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
+#define left_ultra 2
+#define right_ultra 1
+#define center_ultra 0
 extern int distance_out[4];
 extern int left_white;
 extern int right_white;

@@ -16,12 +16,20 @@
 int pwm;
 int logic1;
 int logic2;
+int start_left_enc;
+int start_right_enc;
+
+int block_left;
+int block_left_pos;
+int block_right;
+int block_right_pos;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 void move(int motor, int way, int torque)
 {
 	if(motor == left)
    {
+		 block_left = coast;
      pwm = leftPWM;
      logic1 = logicleft1;
      logic2 = logicleft2;
@@ -30,6 +38,7 @@ void move(int motor, int way, int torque)
    }
    else if(motor == right)
    {
+		 block_right = coast;
      pwm = rightPWM;
      logic1 = logicright1;
      logic2 = logicright2;
@@ -51,10 +60,12 @@ void move(int motor, int way, int torque)
 
 }
 
-void stop(int motor)
+void stop(int motor, int style)
 {
    if(motor == left)
    {
+		 block_left = style;
+		 block_left_pos = left_encoder;
      pwm = leftPWM;
      logic1 = logicleft1;
      logic2 = logicleft2;
@@ -62,12 +73,79 @@ void stop(int motor)
    }
    else if(motor == right)
    {
+		 block_right = style;
+		 block_right_pos = right_encoder;
      pwm = rightPWM;
      logic1 = logicright1;
      logic2 = logicright2;
 		 GPIO_ResetBits(GPIOE, right_LED);
    }
-   PWM_SetDC(pwm, 1000);
+	 if(style == coast)
+	 {
+		PWM_SetDC(pwm, 0);
+	 }else
+	 {
+		PWM_SetDC(pwm, 1000);
+	 }
 	 GPIO_SetBits(GPIOE, logic1);
 	 GPIO_SetBits(GPIOE, logic2);
+}
+void move_unit_single(int motor, int way, int torque, int unit, int num)
+{
+	if(motor == left)
+	{
+		start_left_enc = left_encoder;
+		if(unit == degree)
+		{
+			while(start_left_enc + num >= left_encoder) 
+			{
+				move(left, way, torque);
+			}
+		}else if(unit == length)
+		{
+			num = (180*num)/16;
+			while(start_left_enc + num >= left_encoder)
+			{
+				move(left, way, torque);
+			}
+		}
+	}else
+	{
+		start_right_enc = right_encoder;
+		if(unit == degree)
+		{
+			while(start_right_enc + num >= right_encoder)
+			{
+				move(right, way, torque);
+			}
+		}else if(unit == length)
+		{
+			num = (180*num)/16;
+			while(start_right_enc + num >= right_encoder)
+			{
+				move(right, way, torque);
+			}
+		}
+	}
+}
+void move_unit_double(int way, int torque, int unit, int num)
+{
+		start_left_enc = left_encoder;
+		start_right_enc = right_encoder;
+		if(unit == degree)
+		{
+			while((start_left_enc + num >= left_encoder)&&(start_right_enc + num >= right_encoder))
+			{
+				move(left, way, torque);
+				move(right, way, torque);
+			}
+		}else if(unit == length)
+		{
+			num = (180*num)/16;
+			while((start_left_enc + num >= left_encoder)&&(start_right_enc + num >= right_encoder))
+			{
+				move(left, way, torque);
+				move(right, way, torque);
+			}
+		}
 }
