@@ -34,14 +34,17 @@ char *s2;
 int u,i,o,p;
 char buffer[100];
 uint32_t max;
+char* templ_pic = "candle2.png";
+int match_method = 0;
 
-bool GUI = false;
-bool DEBUG = false;
-bool TEMPL = false;
+bool GUI = true;
+bool DEBUG = true;
+bool TEMPL = true;
 
 int init_opencv(int);
 void send_pos(bool ok, int x, int y);
 void brightest(void);
+void templ_matching(void);
 
 
 int init_opencv()
@@ -87,6 +90,15 @@ int main( int argc, const char** argv )
         s2 = "-templ";
         u = strcmp(argv[o], s2);
         if(u == 0) TEMPL = true;
+        s2 = "-pic";
+        u = strcmp(argv[o], s2);
+        if(u == 0)
+        {
+            char* t;
+            stringstream s(argv[o+1]);
+            s >> t;
+            templ_pic = t;
+        }
     }
 
 //printf("test%c",argv[2]);
@@ -109,7 +121,7 @@ int main( int argc, const char** argv )
 
             if(TEMPL == true)
             {
-
+                templ_matching();
             }
             else
             {
@@ -162,8 +174,8 @@ void brightest(void)
 
     if(maxVal > 0)
     {
-        rectangle( img_display, matchLoc, Point( matchLoc.x + 10, matchLoc.y + 15), Scalar(255,50,0), 2, 8, 0 );
-        rectangle( val, matchLoc, Point( matchLoc.x + 10 , matchLoc.y + 15 ), Scalar(0,50,255), 2, 8, 0 );
+        if(GUI == true)rectangle( img_display, matchLoc, Point( matchLoc.x + 10, matchLoc.y + 15), Scalar(255,50,0), 2, 8, 0 );
+        if(GUI == true)rectangle( val, matchLoc, Point( matchLoc.x + 10 , matchLoc.y + 15 ), Scalar(0,50,255), 2, 8, 0 );
 
         ///send biggest one
         send_pos(true, matchLoc.x, matchLoc.y);
@@ -178,6 +190,71 @@ void brightest(void)
     if(GUI == true) imshow( image_window, img_display );
     if(GUI == true)imshow( result_window, val );
 }
+
+void templ_matching(void)
+{
+    /// Source image to display
+    Mat img_display;
+    img.copyTo( img_display );
+    //img = imread( "/home/kuba/projects/OpenCV - Candle detection/bin/Debug/plocha.jpg",1 );
+    templ = imread( "/home/kuba/projects/OpenCV - Candle detection/bin/Debug/candle3.png",1 );
+
+
+    /*cvtColor(img, hsv, CV_RGB2HSV);
+    // split image to H,S and V images
+    split(hsv,slices);
+    slices[2].copyTo(img);
+*/
+    threshold (img, img, min_val,255, THRESH_TOZERO);
+
+    /// Create the result matrix
+    int result_cols =  img.cols - templ.cols + 1;
+    int result_rows = img.rows - templ.rows + 1;
+
+    result.create( result_cols, result_rows, CV_32FC1 );
+
+    /// Do the Matching and Normalize
+    matchTemplate( img, templ, result, match_method );
+    normalize( result, result, 0, 1, NORM_MINMAX, -1, Mat() );
+
+    /// Localizing the best match with minMaxLoc
+    double minVal;
+    double maxVal;
+    Point minLoc;
+    Point maxLoc;
+    Point matchLoc;
+
+    minMaxLoc( result, &minVal, &maxVal, &minLoc, &maxLoc, Mat() );
+
+    /// For SQDIFF and SQDIFF_NORMED, the best matches are lower values. For all the other methods, the higher the better
+    if( match_method  == CV_TM_SQDIFF || match_method == CV_TM_SQDIFF_NORMED )
+    {
+        matchLoc = minLoc;
+    }
+    else
+    {
+        matchLoc = maxLoc;
+    }
+
+    /// Show me what you got
+    if(maxVal > 0)
+    {
+        if(GUI == true)rectangle( img_display, matchLoc, Point( matchLoc.x + 10, matchLoc.y + 15), Scalar(255,50,0), 2, 8, 0 );
+        if(GUI == true)rectangle( val, matchLoc, Point( matchLoc.x + 10 , matchLoc.y + 15 ), Scalar(0,50,255), 2, 8, 0 );
+
+        ///send biggest one
+        send_pos(true, matchLoc.x, matchLoc.y);
+
+    }
+    else
+    {
+        send_pos(false,0,0);
+    }
+
+    if(GUI == true)imshow( image_window, img_display );
+    if(GUI == true)imshow( result_window, result );
+}
+
 void send_pos(bool ok, int x=0, int y=0)
 {
     if(ok == true)
@@ -213,8 +290,6 @@ void send_pos(bool ok, int x=0, int y=0)
             write(fd, candle_no, sizee);
             if(DEBUG == true)printf(candle_no);
         }
-
-
     }
 }
 
