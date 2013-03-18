@@ -35,8 +35,14 @@ int u,i,o,p;
 char buffer[100];
 uint32_t max;
 
-bool GUI = true;
-bool DEBUG = true;
+bool GUI = false;
+bool DEBUG = false;
+bool TEMPL = false;
+
+int init_opencv(int);
+void send_pos(bool ok, int x, int y);
+void brightest(void);
+
 
 int init_opencv()
 {
@@ -61,17 +67,29 @@ int init_opencv()
 int main( int argc, const char** argv )
 {
 
-    for (o = 2; o <= argc ; o++)
+    for (o = argc-1; o > 0 ; o--)
     {
         s2 = "-g";
         u = strcmp(argv[o], s2);
-        if(u == 0) GUI = false;
+        if(u == 0) GUI = true;
         s2 = "-d";
         u = strcmp(argv[o], s2);
-        if(u == 0) DEBUG = false;
+        if(u == 0) DEBUG = true;
+        s2 = "-t";
+        u = strcmp(argv[o], s2);
+        if(u == 0)
+        {
+            int t;
+            stringstream s(argv[o+1]);
+            s >> t;
+            if((t > 0) && (t < 255)) min_val = t;
+        }
+        s2 = "-templ";
+        u = strcmp(argv[o], s2);
+        if(u == 0) TEMPL = true;
     }
 
-
+//printf("test%c",argv[2]);
 
     init_UART();
     while(connect_STM32F4() == 0);
@@ -89,85 +107,14 @@ int main( int argc, const char** argv )
             int waitKeyValue = 10;
             //imshow("input", img);
 
-
-///localize candle
-            Mat img_display;
-            img.copyTo( img_display );
-
-            /// Localizing the best match with minMaxLoc
-            double minVal;
-            double maxVal;
-            Point minLoc;
-            Point maxLoc;
-            Point matchLoc;
-
-            cvtColor(img, hsv, CV_RGB2HSV);
-            // split image to H,S and V images
-            split(hsv,slices);
-            //slices[0].copyTo (hue); // get the hue channel
-            //slices[1].copyTo(sat); // get the sat channel
-            slices[2].copyTo(val); // get the V channel
-
-            threshold (val, val, min_val,255, THRESH_TOZERO);
-
-            //imshow("val",val);
-            minMaxLoc( val, &minVal, &maxVal, &minLoc, &maxLoc, Mat() );
-
-            matchLoc = maxLoc;
-
-            /// Show me what you got
-
-            if(maxVal > 0)
+            if(TEMPL == true)
             {
-                rectangle( img_display, matchLoc, Point( matchLoc.x + 10, matchLoc.y + 15), Scalar(255,50,0), 2, 8, 0 );
-                rectangle( val, matchLoc, Point( matchLoc.x + 10 , matchLoc.y + 15 ), Scalar(0,50,255), 2, 8, 0 );
-
-                ///send biggest one
-                stringstream sd;
-                sd << "c|" << (int)matchLoc.x << "/" << (int)matchLoc.y << "\n";
-                std::string s = sd.str();
-                const char *Candle_Pos = s.c_str();
-
-                sd.seekg(0, ios::end);
-                int sizee = sd.tellg();
-
-
-                if(sizee < 11)
-                {
-                    write(fd, Candle_Pos, sizee);
-                    if(DEBUG == true)printf(Candle_Pos);
-                }
 
             }
             else
             {
-
-                stringstream sd;
-                sd << "cn|" << "0" << "\n";
-                std::string s = sd.str();
-                const char *candle_no = s.c_str();
-
-                sd.seekg(0, ios::end);
-                int sizee = sd.tellg();
-
-
-                if(sizee < 11)
-                {
-                    write(fd, candle_no, sizee);
-                    if(DEBUG == true)printf(candle_no);
-                }
-
+                brightest();
             }
-            if(GUI == true) imshow( image_window, img_display );
-            if(GUI == true)imshow( result_window, val );
-
-
-
-
-
-
-
-
 
             int key = waitKey(waitKeyValue);
             if(key!=-1)cout<<key<<endl;
@@ -184,7 +131,92 @@ int main( int argc, const char** argv )
 
     return 0;
 }
+void brightest(void)
+{
+    ///localize candle
+    Mat img_display;
+    img.copyTo( img_display );
 
+    /// Localizing the best match with minMaxLoc
+    double minVal;
+    double maxVal;
+    Point minLoc;
+    Point maxLoc;
+    Point matchLoc;
+
+    cvtColor(img, hsv, CV_RGB2HSV);
+    // split image to H,S and V images
+    split(hsv,slices);
+    //slices[0].copyTo (hue); // get the hue channel
+    //slices[1].copyTo(sat); // get the sat channel
+    slices[2].copyTo(val); // get the V channel
+
+    threshold (val, val, min_val,255, THRESH_TOZERO);
+
+    //imshow("val",val);
+    minMaxLoc( val, &minVal, &maxVal, &minLoc, &maxLoc, Mat() );
+
+    matchLoc = maxLoc;
+
+    /// Show me what you got
+
+    if(maxVal > 0)
+    {
+        rectangle( img_display, matchLoc, Point( matchLoc.x + 10, matchLoc.y + 15), Scalar(255,50,0), 2, 8, 0 );
+        rectangle( val, matchLoc, Point( matchLoc.x + 10 , matchLoc.y + 15 ), Scalar(0,50,255), 2, 8, 0 );
+
+        ///send biggest one
+        send_pos(true, matchLoc.x, matchLoc.y);
+
+    }
+    else
+    {
+        send_pos(false,0,0);
+
+
+    }
+    if(GUI == true) imshow( image_window, img_display );
+    if(GUI == true)imshow( result_window, val );
+}
+void send_pos(bool ok, int x=0, int y=0)
+{
+    if(ok == true)
+    {
+        stringstream sd;
+        sd << "c|" << (int)x << "/" << (int)y << "\n";
+        std::string s = sd.str();
+        const char *Candle_Pos = s.c_str();
+
+        sd.seekg(0, ios::end);
+        int sizee = sd.tellg();
+
+
+        if(sizee < 11)
+        {
+            write(fd, Candle_Pos, sizee);
+            if(DEBUG == true)printf(Candle_Pos);
+        }
+    }
+    else
+    {
+        stringstream sd;
+        sd << "cn|" << "0" << "\n";
+        std::string s = sd.str();
+        const char *candle_no = s.c_str();
+
+        sd.seekg(0, ios::end);
+        int sizee = sd.tellg();
+
+
+        if(sizee < 11)
+        {
+            write(fd, candle_no, sizee);
+            if(DEBUG == true)printf(candle_no);
+        }
+
+
+    }
+}
 
 
 
