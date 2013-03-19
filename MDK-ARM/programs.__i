@@ -2,4 +2,4 @@
 -I E:\Keil\ARM\RV31\INC 
 -I E:\Keil\ARM\CMSIS\Include 
 -I E:\Keil\ARM\Inc\ST\STM32F4xx 
--DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "motor.o" --omf_browse "motor.crf" --depend "motor.d" "..\motor.c"
+-DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "programs.o" --omf_browse "programs.crf" --depend "programs.d" "..\programs.c"

@@ -8,6 +8,7 @@
 #include "stm32f4xx_it.h"
 #include "candle_position.h"
 #include "stm32f4_discovery.h"
+#include <math.h>
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -23,7 +24,6 @@ int block_left;
 int block_left_pos;
 int block_right;
 int block_right_pos;
-
 
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
@@ -151,21 +151,17 @@ void move_unit_double(int way, int torque, int unit, int num)
 			}
 		}
 }
-void move_robot_degree(int degr, int torque)
+void move_robot_degree(int degr, int torque) // degr = ((2*pi*15.5)/360)*uhel = 0.270526034 * uhel
 {
-	int way_length = 90;//((2*3 * 15)/360)*90;
-	
+	degr = 0.270526034f * degr;
 	if(degr < 0)
 	{
+		degr = degr * -1;
 		stop(left,block);
-		move_unit_single(right, forward, torque, length, way_length);
+		move_unit_single(right, forward, torque, length, degr);
 	}else if(degr > 0)
 	{
 		stop(right,block);
-		move_unit_single(left, forward, torque, length, way_length);
-	}else
-	{
-		stop(right,block);
-		move_unit_single(left, forward, torque, length, 50);
+		move_unit_single(left, forward, torque, length, degr);
 	}
 }

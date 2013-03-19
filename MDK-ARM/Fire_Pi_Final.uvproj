@@ -207,7 +207,7 @@
             <hadIRAM>1</hadIRAM>
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
-            <RvdsVP>2</RvdsVP>
+            <RvdsVP>1</RvdsVP>
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -440,6 +440,11 @@
               <FileName>motor.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\motor.c</FilePath>
+            </File>
+            <File>
+              <FileName>programs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\programs.c</FilePath>
             </File>
           </Files>
         </Group>

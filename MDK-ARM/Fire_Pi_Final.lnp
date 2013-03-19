@@ -1,4 +1,4 @@
---cpu Cortex-M4.fp "main.o" "system_stm32f4xx.o" "stm32f4xx_it.o" "main_init.o" "usart.o" "delay.o" "candle_position.o" "orientation.o" "pwm.o" "motor.o" "stm32f4_discovery.o" "misc.o" "stm32f4xx_pwr.o" "stm32f4xx_adc.o" "stm32f4xx_dma.o" "stm32f4xx_exti.o" "stm32f4xx_gpio.o" "stm32f4xx_usart.o" "stm32f4xx_rcc.o" "stm32f4xx_sdio.o" "stm32f4xx_syscfg.o" "stm32f4xx_tim.o" "startup_stm32f4xx.o" 
+--cpu Cortex-M4 "main.o" "system_stm32f4xx.o" "stm32f4xx_it.o" "main_init.o" "usart.o" "delay.o" "candle_position.o" "orientation.o" "pwm.o" "motor.o" "programs.o" "stm32f4_discovery.o" "misc.o" "stm32f4xx_pwr.o" "stm32f4xx_adc.o" "stm32f4xx_dma.o" "stm32f4xx_exti.o" "stm32f4xx_gpio.o" "stm32f4xx_usart.o" "stm32f4xx_rcc.o" "stm32f4xx_sdio.o" "stm32f4xx_syscfg.o" "stm32f4xx_tim.o" "startup_stm32f4xx.o" 
 --library_type=microlib --strict --scatter "Fire_Pi_Final.sct" 
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
 --info sizes --info totals --info unused --info veneers 

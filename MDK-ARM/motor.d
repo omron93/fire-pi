@@ -43,3 +43,4 @@ motor.o: ..\delay.h
 motor.o: ..\usart.h
 motor.o: ..\stm32f4xx_it.h
 motor.o: ..\candle_position.h
+motor.o: E:\Keil\ARM\ARMCC\bin\..\include\math.h
