@@ -26,7 +26,7 @@ Mat result_fin,hsv,val;
 vector<Mat> slices;
 VideoCapture san_cap(0);
 RNG rng(12345);
-int   min_val =150, brightness = 50;
+int   min_val =40, brightness = 50;
 
 const char* image_window = "Source Image";
 const char* result_window = "Result window";
@@ -37,7 +37,7 @@ uint32_t max;
 char* templ_pic = "candle2.png";
 int match_method = 0;
 
-bool GUI = true;
+bool GUI = false;
 bool DEBUG = true;
 bool TEMPL = true;
 
