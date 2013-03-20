@@ -6,18 +6,21 @@
 #include "pwm.h"
 #include "candle_position.h"
 #include "stm32f4_discovery.h"
-
+#include "stm32f4xx_it.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+int h,j,k,l;
+long enc_last_left = 0, enc_last_right = 0;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
-void chaos_candle_find(void)
+void candle_sawed(void)
 {
-		if(candle_saw == 1)
-		{
+	int back_lenght = 0;
+	while(candle_saw == 1)
+	{
 			if(candle_pos > RIGHT_CANDLE)
 			{
 				stop(left,coast);
@@ -28,9 +31,10 @@ void chaos_candle_find(void)
 				STM_EVAL_LEDOff(LED4);
 				STM_EVAL_LEDOff(LED3);*/
 				//USART_puts(USART2, "right");
-				move(left, backward, 600);
-				move(right, forward, 600);				
-				
+				//move(left, backward, 600);
+				//move(right, forward, 600);			
+				move_unit_single(right, forward, 800,length, 10);
+				back_lenght-=10;
 			}
 			else if(candle_pos < LEFT_CANDLE)
 			{
@@ -41,8 +45,10 @@ void chaos_candle_find(void)
 				/*STM_EVAL_LEDOn(LED4);	
 				STM_EVAL_LEDOff(LED5);
 				STM_EVAL_LEDOff(LED3);*/
-				move(left, forward, 600);
-				move(right, backward, 600);
+				//move(left, forward, 600);
+				//move(right, backward, 600);
+				move_unit_single(right, backward, 800,length, 10);
+				back_lenght+=10;
 			}
 			else 
 			{
@@ -54,9 +60,18 @@ void chaos_candle_find(void)
 				stop(right,coast);
 				Delay(500);
 				blow();
+				Delay(2000);
 			}
-		}
-		else if(candle_saw == 0)
+	}
+	if(back_lenght>=0)
+		move_unit_single(right, forward, 800,length, back_lenght);
+	else
+		move_unit_single(right, backward, 800,length, -back_lenght);
+}
+void chaos_candle_find(void)
+{
+		
+		if(candle_saw == 0)
 		{
 			if((distance_out[center_ultra] < 30)||(distance_out[left_ultra] < 30)||(distance_out[right_ultra] < 30))
 			{
@@ -78,13 +93,9 @@ void chaos_candle_find(void)
 				move(left, forward, 800);
 				move(right, forward, 800);
 			}
-			
-		}
-		else
-		{
-			
+		}else if(candle_saw == 1)candle_sawed();
 
-		}
+		
 
 }
 
@@ -96,58 +107,96 @@ void loop_wall(void)
 		{
 			move(left, forward, 800);
 			move(right, forward, 800);
+			if(candle_saw == 1)candle_sawed();
 		}
 	}
 	else
 	{
+		if(candle_saw == 1)candle_sawed();
 		move_unit_double(forward, 800, length, 5);
+		if(candle_saw == 1)candle_sawed();
 		move_robot_degree(-90, 800);
+		if(candle_saw == 1)candle_sawed();
 		move_unit_double(forward, 800, length, 25);
+		if(candle_saw == 1)candle_sawed();
 		move_robot_degree(-90, 800);
+		if(candle_saw == 1)candle_sawed();
 	}
 }
-void homologation(void)´
+void homologation(void)
 {
 		if(candle_saw == 1)
 		{
-			if(candle_pos > RIGHT_CANDLE)
-			{
-				stop(left,coast);
-				stop(right,coast);
-				Delay(300);
-				//USART_puts(USART2, "right");
-				move(left, backward, 600);
-				move(right, forward, 600);				
-				
-			}
-			else if(candle_pos < LEFT_CANDLE)
-			{
-				stop(left,coast);
-				stop(right,coast);
-				Delay(300);
-				//USART_puts(USART2, "left");
-				move(left, forward, 600);
-				move(right, backward, 600);
-			}
-			else 
-			{
-				//	USART_puts(USART2, "center");
-				stop(left,coast);
-				stop(right,coast);
-				Delay(500);
-				blow();
-			}
+			candle_sawed();
 		}
-		else if(candle_saw == 20)
+		else if(candle_saw == 0)
 		{
-			move_unit_double(forward, 800, length, 50);
-			move_robot_degree(-20, 500);
-			move_robot_degree(40, 500);
-			move_robot_degree(-20, 500);
+			for (h = 1; h < 200; h++) 
+			{
+				if(candle_saw == 10)candle_sawed();
+				move_unit_double(forward, 800, length, 1);
+			}
+			for (h = 1; h < 20; h++) 
+			{
+				if(candle_saw == 10)candle_sawed();
+				move_robot_degree(-1, 800);
+			}
+			Delay(500);
+			for (h = 1; h < 40; h++) 
+			{
+				if(candle_saw == 10)candle_sawed();
+				move_robot_degree(1, 800);
+			}
+			Delay(500);
+			for (h = 1; h < 20; h++) 
+			{
+				if(candle_saw == 10)candle_sawed();
+				move_robot_degree(-1, 800);
+			}
 		}
-	
-
-
+}
+void stop_on_line(void)
+{
+	if((right_white ==1)||(left_white == 1))
+	{
+		stop_robot(block);
+		Delay(5000);
+	}else
+	{
+		move_double(forward,800);
+	}
 
 
 }
+void follow_line(void)
+{
+	
+	if(right_white ==1)
+	{
+		//stop(right,block);
+		//move(left,forward,500);
+		move_unit_double(backward,700,length,50);
+		move_robot_degree(15,800);
+	}else if(left_white ==1)
+	{
+		move_unit_double(backward,700,length,50);
+		move_robot_degree(-15,800);
+	}else
+	{
+		move_double(forward,800);
+	}
+	
+	if(left_encoder<right_encoder?(left_encoder>(enc_last_left+562)):(right_encoder>(enc_last_right+562)))
+	{
+		enc_last_left+=562;
+		enc_last_right+=562;
+		stop_robot(block);
+		move_unit_single(right, forward, 800,length, 243);
+		stop_robot(block);
+		Delay(500);
+		if(candle_saw == 1)candle_sawed();
+		move_unit_single(right, backward, 800,length, 243);
+		stop_robot(block);
+	}
+}
+

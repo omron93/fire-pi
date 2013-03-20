@@ -37,10 +37,4 @@ main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h
 main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h
 main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h
 main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
-main.o: ..\delay.h
-main.o: ..\usart.h
-main.o: ..\pwm.h
-main.o: ..\motor.h
-main.o: ..\orientation.h
-main.o: ..\stm32f4xx_it.h
-main.o: ..\candle_position.h
+main.o: ..\programs.h

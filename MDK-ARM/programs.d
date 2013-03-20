@@ -41,3 +41,4 @@ programs.o: ..\motor.h
 programs.o: ..\orientation.h
 programs.o: ..\pwm.h
 programs.o: ..\candle_position.h
+programs.o: ..\stm32f4xx_it.h

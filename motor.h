@@ -35,7 +35,9 @@ extern int block_right_pos;
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 void move(int motor, int way, int torque);
+void move_double(int way, int torque);
 void stop(int motor, int style);
+void stop_robot(int style);
 void move_unit_single(int motor, int way, int torque, int unit, int num);
 void move_unit_double(int way, int torque, int unit, int num);
 void move_robot_degree(int degr, int torque);

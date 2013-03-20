@@ -1,5 +1,5 @@
 Dependencies for Project 'Fire_Pi_Final', Target 'Fire_Pi_Final': (DO NOT MODIFY !)
-F (..\main.c)(0x51488510)(-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F4xx -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "main.o" --omf_browse "main.crf" --depend "main.d")
+F (..\main.c)(0x514A09D7)(-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F4xx -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "main.o" --omf_browse "main.crf" --depend "main.d")
 I (..\main.h)(0x513668EE)
 I (..\main_init.h)(0x5140A61A)
 I (..\Utilities\STM32F4-Discovery\stm32f4_discovery.h)(0x513668EE)
@@ -37,13 +37,7 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x513668ED)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x513668ED)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x513668ED)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x513668ED)
-I (..\delay.h)(0x513668EE)
-I (..\usart.h)(0x513668EE)
-I (..\pwm.h)(0x5140FA16)
-I (..\motor.h)(0x5147486C)
-I (..\orientation.h)(0x5144A456)
-I (..\stm32f4xx_it.h)(0x5145AEFE)
-I (..\candle_position.h)(0x5144B963)
+I (..\programs.h)(0x514A082D)
 F (..\system_stm32f4xx.c)(0x513668EE)(-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F4xx -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "system_stm32f4xx.o" --omf_browse "system_stm32f4xx.crf" --depend "system_stm32f4xx.d")
 I (..\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h)(0x513668ED)
 I (..\Libraries\CMSIS\Include\core_cm4.h)(0x513668E3)
@@ -79,7 +73,7 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x513668ED)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x513668ED)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x513668ED)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x513668ED)
-F (..\stm32f4xx_it.c)(0x5145CB29)(-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F4xx -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "stm32f4xx_it.o" --omf_browse "stm32f4xx_it.crf" --depend "stm32f4xx_it.d")
+F (..\stm32f4xx_it.c)(0x5149FCCB)(-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F4xx -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "stm32f4xx_it.o" --omf_browse "stm32f4xx_it.crf" --depend "stm32f4xx_it.d")
 I (..\stm32f4xx_it.h)(0x5145AEFE)
 I (..\Utilities\STM32F4-Discovery\stm32f4_discovery.h)(0x513668EE)
 I (..\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h)(0x513668ED)
@@ -121,7 +115,7 @@ I (..\usart.h)(0x513668EE)
 I (..\delay.h)(0x513668EE)
 I (..\candle_position.h)(0x5144B963)
 I (..\orientation.h)(0x5144A456)
-I (..\motor.h)(0x5147486C)
+I (..\motor.h)(0x5149FA59)
 I (E:\Keil\ARM\ARMCC\bin\..\include\string.h)(0x4EB134F6)
 I (E:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB134F6)
 F (..\main_init.c)(0x5140C221)(-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F4xx -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "main_init.o" --omf_browse "main_init.crf" --depend "main_init.d")
@@ -163,7 +157,7 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x513668ED)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x513668ED)
 I (..\main.h)(0x513668EE)
 I (..\pwm.h)(0x5140FA16)
-I (..\motor.h)(0x5147486C)
+I (..\motor.h)(0x5149FA59)
 F (..\usart.c)(0x513668EE)(-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F4xx -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "usart.o" --omf_browse "usart.crf" --depend "usart.d")
 I (..\usart.h)(0x513668EE)
 I (..\Utilities\STM32F4-Discovery\stm32f4_discovery.h)(0x513668EE)
@@ -280,7 +274,7 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x513668ED)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x513668ED)
 I (..\usart.h)(0x513668EE)
 I (E:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB134F6)
-F (..\orientation.c)(0x5144A543)(-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F4xx -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "orientation.o" --omf_browse "orientation.crf" --depend "orientation.d")
+F (..\orientation.c)(0x514A0EDD)(-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F4xx -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "orientation.o" --omf_browse "orientation.crf" --depend "orientation.d")
 I (..\main.h)(0x513668EE)
 I (..\orientation.h)(0x5144A456)
 I (..\Utilities\STM32F4-Discovery\stm32f4_discovery.h)(0x513668EE)
@@ -322,7 +316,7 @@ I (..\delay.h)(0x513668EE)
 I (..\usart.h)(0x513668EE)
 I (..\main_init.h)(0x5140A61A)
 I (E:\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB134F6)
-F (..\pwm.c)(0x514779F2)(-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F4xx -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "pwm.o" --omf_browse "pwm.crf" --depend "pwm.d")
+F (..\pwm.c)(0x514A2657)(-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F4xx -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "pwm.o" --omf_browse "pwm.crf" --depend "pwm.d")
 I (..\pwm.h)(0x5140FA16)
 I (..\Utilities\STM32F4-Discovery\stm32f4_discovery.h)(0x513668EE)
 I (..\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h)(0x513668ED)
@@ -364,8 +358,8 @@ I (..\main_init.h)(0x5140A61A)
 I (..\delay.h)(0x513668EE)
 I (..\usart.h)(0x513668EE)
 I (..\candle_position.h)(0x5144B963)
-F (..\motor.c)(0x51488001)(-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F4xx -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "motor.o" --omf_browse "motor.crf" --depend "motor.d")
-I (..\motor.h)(0x5147486C)
+F (..\motor.c)(0x514A1DB9)(-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F4xx -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "motor.o" --omf_browse "motor.crf" --depend "motor.d")
+I (..\motor.h)(0x5149FA59)
 I (..\Utilities\STM32F4-Discovery\stm32f4_discovery.h)(0x513668EE)
 I (..\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h)(0x513668ED)
 I (..\Libraries\CMSIS\Include\core_cm4.h)(0x513668E3)
@@ -408,8 +402,9 @@ I (..\delay.h)(0x513668EE)
 I (..\usart.h)(0x513668EE)
 I (..\stm32f4xx_it.h)(0x5145AEFE)
 I (..\candle_position.h)(0x5144B963)
+I (..\programs.h)(0x514A082D)
 I (E:\Keil\ARM\ARMCC\bin\..\include\math.h)(0x4EB134F8)
-F (..\programs.c)(0x51488510)(-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F4xx -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "programs.o" --omf_browse "programs.crf" --depend "programs.d")
+F (..\programs.c)(0x514A2657)(-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F4xx -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "programs.o" --omf_browse "programs.crf" --depend "programs.d")
 I (..\main.h)(0x513668EE)
 I (..\delay.h)(0x513668EE)
 I (..\Utilities\STM32F4-Discovery\stm32f4_discovery.h)(0x513668EE)
@@ -447,10 +442,11 @@ I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h)(0x513668ED)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h)(0x513668ED)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h)(0x513668ED)
 I (..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h)(0x513668ED)
-I (..\motor.h)(0x5147486C)
+I (..\motor.h)(0x5149FA59)
 I (..\orientation.h)(0x5144A456)
 I (..\pwm.h)(0x5140FA16)
 I (..\candle_position.h)(0x5144B963)
+I (..\stm32f4xx_it.h)(0x5145AEFE)
 F (..\Utilities\STM32F4-Discovery\stm32f4_discovery.c)(0x513668EE)(-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery -I E:\Keil\ARM\RV31\INC -I E:\Keil\ARM\CMSIS\Include -I E:\Keil\ARM\Inc\ST\STM32F4xx -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "stm32f4_discovery.o" --omf_browse "stm32f4_discovery.crf" --depend "stm32f4_discovery.d")
 I (..\Utilities\STM32F4-Discovery\stm32f4_discovery.h)(0x513668EE)
 I (..\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h)(0x513668ED)

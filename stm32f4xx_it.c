@@ -211,7 +211,6 @@ void USART2_IRQHandler(void)
 								}
 								candle_saw = 1;
 								candle_position(candle [0],candle [1]);
-								STM_EVAL_LEDOff(LED3);
 								STM_EVAL_LEDOn(LED6);
 								cnt = 0;
 					}
@@ -220,7 +219,6 @@ void USART2_IRQHandler(void)
 					if(i == 0)					 
 					{										
 								candle_saw = 0;
-								STM_EVAL_LEDOn(LED3);
 								STM_EVAL_LEDOff(LED6);
 					}
 					ps = strtok (NULL, "|");	 

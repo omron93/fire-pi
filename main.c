@@ -1,13 +1,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "main_init.h"
-#include "delay.h"
-#include "usart.h"
-#include "pwm.h"
-#include "motor.h"
-#include "orientation.h"
-#include "stm32f4xx_it.h"
-#include "candle_position.h"
+#include "programs.h"
 #include "stm32f4_discovery.h"
 
 /* Private typedef -----------------------------------------------------------*/
@@ -23,7 +17,10 @@ int main(void)
   while (1)
   {
 		//chaos_candle_find();
-		loop_wall();
+		//loop_wall();
+		//homologation();
+		//stop_on_line();
+		follow_line();
 	}
 }
 

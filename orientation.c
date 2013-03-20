@@ -10,9 +10,9 @@
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define left 0
-#define left_voltage 2400
+#define left_voltage 1800
 #define right 1
-#define right_voltage 2400
+#define right_voltage 1800
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 int distance[4][3];
@@ -115,19 +115,23 @@ void read_ADC_check(void)
 		if(ADC3ConvertedVoltage[left] < left_voltage)
 		{
 			left_white = 1;
+			STM_EVAL_LEDOn(LED3);
 			//STM_EVAL_LEDOn(LED3);
 		}else
 		{
 			left_white = 0;
+			STM_EVAL_LEDOff(LED3);
 			//STM_EVAL_LEDOff(LED3);
 		}
 		if(ADC3ConvertedVoltage[right] < right_voltage)
 		{
 			right_white = 1;
+			STM_EVAL_LEDOn(LED3);
 			//STM_EVAL_LEDOn(LED5);
 		}else
 		{
 			right_white = 0;
+			STM_EVAL_LEDOff(LED3);
 			//STM_EVAL_LEDOff(LED5);
 		}
 	}
