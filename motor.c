@@ -13,6 +13,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
+
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 int pwm;
@@ -20,6 +21,9 @@ int logic1;
 int logic2;
 int start_left_enc;
 int start_right_enc;
+
+float left_constant = 0.95f;
+float right_constant = 1.1f;
 
 int block_left;
 int block_left_pos;
@@ -32,6 +36,8 @@ void move(int motor, int way, int torque)
 {
 	if(motor == left)
    {
+		 torque *= left_constant;
+		 if(torque > 1000) torque = 1000;
 		 block_left = coast;
      pwm = leftPWM;
      logic1 = logicleft1;
@@ -41,6 +47,8 @@ void move(int motor, int way, int torque)
    }
    else if(motor == right)
    {
+		 torque *= right_constant;
+		 if(torque > 1000) torque = 1000;
 		 block_right = coast;
      pwm = rightPWM;
      logic1 = logicright1;

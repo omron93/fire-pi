@@ -3,7 +3,7 @@
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
-#define LEFT_CANDLE 100
+#define LEFT_CANDLE 115
 #define RIGHT_CANDLE 220
 extern int candle_pos;
 extern int candle_saw;

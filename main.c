@@ -2,6 +2,8 @@
 #include "main.h"
 #include "main_init.h"
 #include "programs.h"
+#include "motor.h"
+#include "delay.h"
 #include "stm32f4_discovery.h"
 
 /* Private typedef -----------------------------------------------------------*/
@@ -14,14 +16,18 @@
 int main(void)
 {
   init_ALL();
+	Delay(800);
   while (1)
   {
 		//chaos_candle_find();
 		//loop_wall();
 		//homologation();
 		//stop_on_line();
-		follow_line();
-	}
+		//follow_line();
+		//move_double(forward, 1000);
+		//go_to_center();
+		chaos();
+}
 }
 
 

@@ -10,9 +10,9 @@
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define left 0
-#define left_voltage 1800
+#define left_voltage 1600
 #define right 1
-#define right_voltage 1800
+#define right_voltage 1600
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 int distance[4][3];

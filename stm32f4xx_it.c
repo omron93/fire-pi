@@ -27,6 +27,7 @@ char strr;
 int i ;
 int cnt = 0;
 int candle [2];
+int first_candle = 0;
 ///USARTS:::::::::::::::::::::::::::::::::::::::
 
 long left_encoder = 0;
@@ -209,9 +210,12 @@ void USART2_IRQHandler(void)
  									ps = strtok (NULL, "/");	
 									cnt++;
 								}
-								candle_saw = 1;
-								candle_position(candle [0],candle [1]);
-								STM_EVAL_LEDOn(LED6);
+								if(first_candle == 1)
+								{
+									candle_saw = 1;
+									candle_position(candle [0],candle [1]);
+									STM_EVAL_LEDOn(LED6);
+								}else first_candle = 1;
 								cnt = 0;
 					}
 					s1 = "cn";		
@@ -219,6 +223,7 @@ void USART2_IRQHandler(void)
 					if(i == 0)					 
 					{										
 								candle_saw = 0;
+								first_candle = 0;
 								STM_EVAL_LEDOff(LED6);
 					}
 					ps = strtok (NULL, "|");	 

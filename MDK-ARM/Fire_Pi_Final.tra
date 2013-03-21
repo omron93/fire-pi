@@ -34,7 +34,7 @@
 ### ADS-LD Output File: 'Fire_Pi_Final.axf'
 ### ADS-LD Command File: 'Fire_Pi_Final.lnp'
 ### Checking for dirty Components...
-### Creating CmdFile 'Fire_Pi_Final.lnp', Handle=0x000005C4
+### Creating CmdFile 'Fire_Pi_Final.lnp', Handle=0x00000960
 ### Writing '.lnp' file
 ### ADS-LD Command file 'Fire_Pi_Final.lnp' is ready.
 ### ADS-LD: About to start ADS-LD Thread.

@@ -38,3 +38,5 @@ main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h
 main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h
 main.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
 main.o: ..\programs.h
+main.o: ..\motor.h
+main.o: ..\delay.h
