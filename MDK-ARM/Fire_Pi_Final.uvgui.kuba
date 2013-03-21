@@ -2515,7 +2515,7 @@
       <Name>C:\fire-pi\programs.h</Name>
       <ColumnNumber>0</ColumnNumber>
       <TopLine>1</TopLine>
-      <CurrentLine>14</CurrentLine>
+      <CurrentLine>7</CurrentLine>
     </Doc>
     <Doc>
       <Name>C:\fire-pi\candle_position.h</Name>
@@ -2555,9 +2555,9 @@
       </Doc>
       <Doc>
         <Name>..\main.c</Name>
-        <ColumnNumber>0</ColumnNumber>
+        <ColumnNumber>18</ColumnNumber>
         <TopLine>20</TopLine>
-        <CurrentLine>32</CurrentLine>
+        <CurrentLine>22</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
       </Doc>
@@ -2571,9 +2571,9 @@
       </Doc>
       <Doc>
         <Name>..\programs.c</Name>
-        <ColumnNumber>32</ColumnNumber>
-        <TopLine>101</TopLine>
-        <CurrentLine>274</CurrentLine>
+        <ColumnNumber>6</ColumnNumber>
+        <TopLine>71</TopLine>
+        <CurrentLine>245</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders>20,70,101,169,182</ContractedFolders>
       </Doc>
@@ -2615,9 +2615,9 @@
       </Doc>
       <Doc>
         <Name>..\programs.h</Name>
-        <ColumnNumber>0</ColumnNumber>
+        <ColumnNumber>17</ColumnNumber>
         <TopLine>1</TopLine>
-        <CurrentLine>14</CurrentLine>
+        <CurrentLine>7</CurrentLine>
         <Folding>0</Folding>
         <ContractedFolders></ContractedFolders>
       </Doc>

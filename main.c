@@ -19,7 +19,7 @@ int main(void)
 	Delay(800);
   while (1)
   {
-		//chaos_candle_find();
+		//chaos_simple();
 		//loop_wall();
 		//homologation();
 		//stop_on_line();
