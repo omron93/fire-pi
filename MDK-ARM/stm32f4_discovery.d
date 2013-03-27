@@ -2,7 +2,7 @@ stm32f4_discovery.o: ..\Utilities\STM32F4-Discovery\stm32f4_discovery.c
 stm32f4_discovery.o: ..\Utilities\STM32F4-Discovery\stm32f4_discovery.h
 stm32f4_discovery.o: ..\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 stm32f4_discovery.o: ..\Libraries\CMSIS\Include\core_cm4.h
-stm32f4_discovery.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+stm32f4_discovery.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 stm32f4_discovery.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 stm32f4_discovery.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 stm32f4_discovery.o: ..\Libraries\CMSIS\Include\core_cm4_simd.h

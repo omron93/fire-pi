@@ -35,8 +35,8 @@ void PWM_SetDC(uint16_t channel,uint16_t dutycycle)
 }
 void blow(void)
 {
-	blow_demo();
-/*
+	//blow_demo();
+
 	PWM_SetDC(3,200);
 	Delay(500);
 	PWM_SetDC(3,600);
@@ -46,8 +46,8 @@ void blow(void)
 	PWM_SetDC(3,600);
 	Delay(200);
 	PWM_SetDC(3,1000);
-	Delay(500);
-	PWM_SetDC(3,0);*/
+	Delay(2000);
+	PWM_SetDC(3,0);
 }
 void blow_demo(void)
 {

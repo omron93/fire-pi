@@ -3,7 +3,7 @@ usart.o: ..\usart.h
 usart.o: ..\Utilities\STM32F4-Discovery\stm32f4_discovery.h
 usart.o: ..\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 usart.o: ..\Libraries\CMSIS\Include\core_cm4.h
-usart.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+usart.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 usart.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 usart.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 usart.o: ..\Libraries\CMSIS\Include\core_cm4_simd.h
@@ -36,5 +36,5 @@ usart.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_tim.h
 usart.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_usart.h
 usart.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h
 usart.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
-usart.o: E:\Keil\ARM\ARMCC\bin\..\include\string.h
-usart.o: E:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+usart.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h
+usart.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h

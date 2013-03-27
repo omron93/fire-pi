@@ -2,7 +2,7 @@ stm32f4xx_pwr.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_pwr.c
 stm32f4xx_pwr.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_pwr.h
 stm32f4xx_pwr.o: ..\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 stm32f4xx_pwr.o: ..\Libraries\CMSIS\Include\core_cm4.h
-stm32f4xx_pwr.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+stm32f4xx_pwr.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 stm32f4xx_pwr.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 stm32f4xx_pwr.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 stm32f4xx_pwr.o: ..\Libraries\CMSIS\Include\core_cm4_simd.h

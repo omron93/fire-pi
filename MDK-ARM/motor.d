@@ -3,7 +3,7 @@ motor.o: ..\motor.h
 motor.o: ..\Utilities\STM32F4-Discovery\stm32f4_discovery.h
 motor.o: ..\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 motor.o: ..\Libraries\CMSIS\Include\core_cm4.h
-motor.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+motor.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 motor.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 motor.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 motor.o: ..\Libraries\CMSIS\Include\core_cm4_simd.h
@@ -44,4 +44,4 @@ motor.o: ..\usart.h
 motor.o: ..\stm32f4xx_it.h
 motor.o: ..\candle_position.h
 motor.o: ..\programs.h
-motor.o: E:\Keil\ARM\ARMCC\bin\..\include\math.h
+motor.o: C:\Keil\ARM\ARMCC\bin\..\include\math.h

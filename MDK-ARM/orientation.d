@@ -4,7 +4,7 @@ orientation.o: ..\orientation.h
 orientation.o: ..\Utilities\STM32F4-Discovery\stm32f4_discovery.h
 orientation.o: ..\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 orientation.o: ..\Libraries\CMSIS\Include\core_cm4.h
-orientation.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+orientation.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 orientation.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 orientation.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 orientation.o: ..\Libraries\CMSIS\Include\core_cm4_simd.h
@@ -40,4 +40,4 @@ orientation.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
 orientation.o: ..\delay.h
 orientation.o: ..\usart.h
 orientation.o: ..\main_init.h
-orientation.o: E:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+orientation.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h

@@ -15,10 +15,14 @@
 int h,j,k,l,t;
 long enc_last_left = 0, enc_last_right = 0;
 long chaoss = 90;
+
+int stop_length = 3240;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 void candle_sawed(void)
 {
+	int error = 0;
+	int backway = 0;
 	int back_lenght = 0;
 	while(candle_saw == 1)
 	{
@@ -60,12 +64,29 @@ void candle_sawed(void)
 				Delay(500);
 				blow();
 				Delay(2000);
+				error++;
+				if(error > 2)
+				{
+					backway += 400;
+					move_unit_double(forward, 800, length, 400);
+					stop_robot(block);
+					Delay(500);
+					blow();
+					Delay(2000);
+					error = 0;
+				}
 			}
 	}
+	move_unit_double(backward, 800, length, backway);
+	stop_robot(block);
+	move_double(forward, 1000);
+	backway = 0;
 	if(back_lenght<=0)
 		move_unit_single(right, forward, 800,length, -back_lenght);
 	else
 		move_unit_single(right, backward, 800,length, back_lenght);
+	stop_robot(block);
+	move_double(forward, 1000);
 }
 void chaos_simple(void)
 {
@@ -137,11 +158,11 @@ void homologation(void)
 				if((right_white ==1)||(left_white == 1))
 				{
 					move_unit_double(backward, 800, length, 400); 
-					move_unit_single(right, forward, 800,length, 30);
+					move_unit_single(right, backward, 800,length, 30);
 				}
 				move_unit_double(forward, 800, length, 1);
 			}
-			for (h = 1; h < 22; h++) 
+			for (h = 1; h < 30; h++) 
 			{
 				if(candle_saw == 1)candle_sawed();
 				move_robot_degree(-1, 800);
@@ -149,7 +170,7 @@ void homologation(void)
 				stop_robot(block);
 			}
 			Delay(500);
-			for (h = 1; h < 40; h++) 
+			for (h = 1; h < 60; h++) 
 			{
 				if(candle_saw == 1)candle_sawed();
 				move_robot_degree(1, 800);
@@ -157,7 +178,7 @@ void homologation(void)
 				stop_robot(block);
 			}
 			Delay(500);
-			for (h = 1; h < 20; h++) 
+			for (h = 1; h < 30; h++) 
 			{
 				if(candle_saw == 1)candle_sawed();
 				move_robot_degree(-1, 800);
@@ -219,7 +240,7 @@ void follow_line(void)
 		stop_robot(block);
 		move_unit_single(right, forward, 800,length, 243);
 		stop_robot(block);
-		Delay(500);
+		Delay(1000);
 		if(candle_saw == 1)candle_sawed();
 		move_unit_single(right, backward, 800,length, 243);
 		stop_robot(block);
@@ -281,7 +302,7 @@ void go_to_center(void)
 				}
 				else
 				{
-					 move_unit_double(backward, 800, length, 150);
+					 move_unit_double(backward, 800, length, 300);
 					 stop_robot(block);
 					 for (h = 1; h < chaoss; h++)
 								{
@@ -303,16 +324,26 @@ void go_to_center(void)
 }
 void chaos(void)
 {
-    move_double(forward, 800);
+    move_double(forward, 1000);
     while(1)
     {
-        if(left_encoder<right_encoder?(left_encoder>(enc_last_left+360)):(right_encoder>(enc_last_right+360)))
+        if(left_encoder<right_encoder?(left_encoder>(enc_last_left+stop_length)):(right_encoder>(enc_last_right+stop_length)))
         {
-            enc_last_left+=360;
-            enc_last_right+=360;
-           if(candle_saw == 1)
-                candle_sawed();
-            move_double(forward, 800);
+           enc_last_left+=stop_length;
+           enc_last_right+=stop_length;
+           for(t=1;t<9;t++)
+						{
+							for (h = 1; h < 45; h++) 
+							{
+								if(candle_saw == 1)candle_sawed();
+								move_robot_degree(1, 800);
+								stop_robot(block);
+							}
+							stop_robot(block);
+							if(t!= 8)Delay(500);
+							if(candle_saw == 1)candle_sawed();
+						}
+            move_double(forward, 1000);
         }
         if(left_white || right_white || (distance_out[left_ultra] < 20) || (distance_out[right_ultra] < 20) || (distance_out[center_ultra] < 20))
         {
@@ -337,7 +368,7 @@ void chaos(void)
                         stop_robot(block);
                     }
             }
-            else
+            else if(distance_out[center_ultra] < 20)
             {
                move_unit_double(backward, 800, length, 150);
                stop_robot(block);
@@ -349,14 +380,18 @@ void chaos(void)
                         stop_robot(block);
                     }
             }
+						
             stop_robot(block);
             chaoss += 10;
-            if(chaoss > 130)
+            if(chaoss > 120)
             {
                 chaoss = 90;
             }
-            move_double(forward, 800);
+            move_double(forward, 1000);
+						
         }
+				if(candle_saw == 1)
+                       candle_sawed();
     }
 }		
 
