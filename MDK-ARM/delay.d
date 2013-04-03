@@ -3,7 +3,7 @@ delay.o: ..\delay.h
 delay.o: ..\Utilities\STM32F4-Discovery\stm32f4_discovery.h
 delay.o: ..\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 delay.o: ..\Libraries\CMSIS\Include\core_cm4.h
-delay.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+delay.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 delay.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 delay.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 delay.o: ..\Libraries\CMSIS\Include\core_cm4_simd.h

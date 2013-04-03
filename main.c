@@ -4,6 +4,7 @@
 #include "programs.h"
 #include "motor.h"
 #include "delay.h"
+#include "pwm.h"
 #include "stm32f4_discovery.h"
 
 /* Private typedef -----------------------------------------------------------*/
@@ -14,11 +15,35 @@
 /* Private functions ---------------------------------------------------------*/
 
 int main(void)
-{
-  init_ALL();
-	Delay(800);
+{	
+	init_ALL();
+	menu();
   while (1)
   {
+		switch(program)
+		{
+			case 1:
+				chaos();
+			break;
+			case 2:
+				homologation();
+			break;
+			case 3:
+				wall_detect();				
+			break;
+			case 4:
+				follow_line();
+			break;
+			case 5:
+				move_double(forward, 1000);		
+			break;
+			case 6:
+				blow_demo();
+				Delay(8000);
+				blow();
+				Delay(8000);
+			break;
+		}
 		//chaos_simple();
 		//loop_wall();
 		//homologation();
@@ -26,7 +51,7 @@ int main(void)
 		//follow_line();
 		//move_double(forward, 1000);
 		//go_to_center();
-		chaos();
+		//chaos();
 }
 }
 

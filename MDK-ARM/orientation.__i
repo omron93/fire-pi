@@ -1,5 +1,5 @@
--c --cpu Cortex-M4 -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery 
--I C:\Keil\ARM\RV31\INC 
--I C:\Keil\ARM\CMSIS\Include 
--I C:\Keil\ARM\Inc\ST\STM32F4xx 
+-c --cpu Cortex-M4 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I..\ -I..\Libraries\CMSIS\Include -I..\Libraries\CMSIS\ST\STM32F4xx\Include -I..\Libraries\STM32F4xx_StdPeriph_Driver\inc -I..\Utilities\STM32F4-Discovery 
+-I E:\Keil\ARM\RV31\INC 
+-I E:\Keil\ARM\CMSIS\Include 
+-I E:\Keil\ARM\Inc\ST\STM32F4xx 
 -DUSE_STDPERIPH_DRIVER -DSTM32F4XX -o "orientation.o" --omf_browse "orientation.crf" --depend "orientation.d" "..\orientation.c"

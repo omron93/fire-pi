@@ -115,23 +115,23 @@ void read_ADC_check(void)
 		if(ADC3ConvertedVoltage[left] < left_voltage)
 		{
 			left_white = 1;
-			STM_EVAL_LEDOn(LED3);
+			//STM_EVAL_LEDOn(LED3);
 			//STM_EVAL_LEDOn(LED3);
 		}else
 		{
 			left_white = 0;
-			STM_EVAL_LEDOff(LED3);
+			//STM_EVAL_LEDOff(LED3);
 			//STM_EVAL_LEDOff(LED3);
 		}
 		if(ADC3ConvertedVoltage[right] < right_voltage)
 		{
 			right_white = 1;
-			STM_EVAL_LEDOn(LED3);
+			//STM_EVAL_LEDOn(LED3);
 			//STM_EVAL_LEDOn(LED5);
 		}else
 		{
 			right_white = 0;
-			STM_EVAL_LEDOff(LED3);
+			//STM_EVAL_LEDOff(LED3);
 			//STM_EVAL_LEDOff(LED5);
 		}
 	}

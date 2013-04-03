@@ -7,12 +7,28 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 static __IO uint32_t TimingDelay;
-
+int TimintDead = 0;
+int dead = 0;
 /* Private function prototypes -----------------------------------------------*/
 void Delay(__IO uint32_t nTime);
 void TimingDelay_Decrement(void);
 
 /* Private functions ---------------------------------------------------------*/
+void deadline(int time)
+{
+	TimintDead = time;
+	dead = 1;
+}
+void deadline_Decrement(void)
+{
+	if (TimintDead != 0x00)
+  { 
+    TimintDead--;
+  }else
+	{
+		dead = 0;
+	}
+}
 void Delay(__IO uint32_t nTime)
 { 
   TimingDelay = nTime;

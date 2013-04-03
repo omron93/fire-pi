@@ -4,7 +4,7 @@ programs.o: ..\delay.h
 programs.o: ..\Utilities\STM32F4-Discovery\stm32f4_discovery.h
 programs.o: ..\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 programs.o: ..\Libraries\CMSIS\Include\core_cm4.h
-programs.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+programs.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 programs.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 programs.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 programs.o: ..\Libraries\CMSIS\Include\core_cm4_simd.h

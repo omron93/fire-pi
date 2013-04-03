@@ -3,7 +3,7 @@ stm32f4xx_it.o: ..\stm32f4xx_it.h
 stm32f4xx_it.o: ..\Utilities\STM32F4-Discovery\stm32f4_discovery.h
 stm32f4xx_it.o: ..\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 stm32f4xx_it.o: ..\Libraries\CMSIS\Include\core_cm4.h
-stm32f4xx_it.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+stm32f4xx_it.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 stm32f4xx_it.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 stm32f4xx_it.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 stm32f4xx_it.o: ..\Libraries\CMSIS\Include\core_cm4_simd.h
@@ -42,5 +42,5 @@ stm32f4xx_it.o: ..\delay.h
 stm32f4xx_it.o: ..\candle_position.h
 stm32f4xx_it.o: ..\orientation.h
 stm32f4xx_it.o: ..\motor.h
-stm32f4xx_it.o: C:\Keil\ARM\ARMCC\bin\..\include\string.h
-stm32f4xx_it.o: C:\Keil\ARM\ARMCC\bin\..\include\stdio.h
+stm32f4xx_it.o: E:\Keil\ARM\ARMCC\bin\..\include\string.h
+stm32f4xx_it.o: E:\Keil\ARM\ARMCC\bin\..\include\stdio.h

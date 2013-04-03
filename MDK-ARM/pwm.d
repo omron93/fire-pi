@@ -3,7 +3,7 @@ pwm.o: ..\pwm.h
 pwm.o: ..\Utilities\STM32F4-Discovery\stm32f4_discovery.h
 pwm.o: ..\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 pwm.o: ..\Libraries\CMSIS\Include\core_cm4.h
-pwm.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+pwm.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 pwm.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 pwm.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 pwm.o: ..\Libraries\CMSIS\Include\core_cm4_simd.h

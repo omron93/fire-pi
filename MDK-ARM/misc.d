@@ -2,7 +2,7 @@ misc.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\src\misc.c
 misc.o: ..\Libraries\STM32F4xx_StdPeriph_Driver\inc\misc.h
 misc.o: ..\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 misc.o: ..\Libraries\CMSIS\Include\core_cm4.h
-misc.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+misc.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 misc.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 misc.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 misc.o: ..\Libraries\CMSIS\Include\core_cm4_simd.h

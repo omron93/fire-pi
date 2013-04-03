@@ -12,13 +12,127 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-int h,j,k,l,t;
+int h,j,k,l,t,d;
 long enc_last_left = 0, enc_last_right = 0;
 long chaoss = 90;
+int program = 0;
 
 int stop_length = 3240;
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
+void menu(void)
+{
+	for (d = 1; d < 4; d++)
+	{
+		STM_EVAL_LEDOff(LED4);
+		STM_EVAL_LEDOff(LED3);
+		STM_EVAL_LEDOff(LED5);
+		STM_EVAL_LEDOff(LED6);
+		STM_EVAL_LEDOn(LED4);
+		Delay(70);
+		STM_EVAL_LEDOff(LED4);
+		STM_EVAL_LEDOn(LED3);
+		Delay(70);
+		STM_EVAL_LEDOff(LED3);
+		STM_EVAL_LEDOn(LED5);
+		Delay(70);
+		STM_EVAL_LEDOff(LED5);
+		STM_EVAL_LEDOn(LED6);
+		Delay(70);
+	}
+	STM_EVAL_LEDOff(LED4);
+	STM_EVAL_LEDOff(LED3);
+	STM_EVAL_LEDOff(LED5);
+	STM_EVAL_LEDOff(LED6);
+	deadline(2000);
+	while(dead)
+	{
+		if(STM_EVAL_PBGetState(BUTTON_USER))
+		{
+			TimintDead = 2000;
+			if(program != 6)
+			{
+				program++;
+			}else
+			{
+				program = 1;
+			}
+			switch(program)
+			{
+				case 1:
+					STM_EVAL_LEDOn(LED4);
+					STM_EVAL_LEDOff(LED3);
+					STM_EVAL_LEDOff(LED5);
+					STM_EVAL_LEDOff(LED6);
+					GPIO_ResetBits(GPIOE, left_LED);
+					GPIO_ResetBits(GPIOE, right_LED);
+				break;
+				case 2:
+					STM_EVAL_LEDOn(LED4);
+					STM_EVAL_LEDOn(LED3);
+					STM_EVAL_LEDOff(LED5);
+					STM_EVAL_LEDOff(LED6);
+					GPIO_ResetBits(GPIOE, left_LED);
+					GPIO_ResetBits(GPIOE, right_LED);
+				break;
+				case 3:
+					STM_EVAL_LEDOn(LED4);
+					STM_EVAL_LEDOn(LED3);
+					STM_EVAL_LEDOn(LED5);
+					STM_EVAL_LEDOff(LED6);
+					GPIO_ResetBits(GPIOE, left_LED);
+					GPIO_ResetBits(GPIOE, right_LED);
+				break;
+				case 4:
+					STM_EVAL_LEDOn(LED4);
+					STM_EVAL_LEDOn(LED3);
+					STM_EVAL_LEDOn(LED5);
+					STM_EVAL_LEDOn(LED6);
+					GPIO_ResetBits(GPIOE, left_LED);
+					GPIO_ResetBits(GPIOE, right_LED);
+				break;
+				case 5:
+					STM_EVAL_LEDOn(LED4);
+					STM_EVAL_LEDOn(LED3);
+					STM_EVAL_LEDOn(LED5);
+					STM_EVAL_LEDOn(LED6);
+					GPIO_SetBits(GPIOE, left_LED);
+					GPIO_ResetBits(GPIOE, right_LED);
+				break;
+				case 6:
+					GPIO_SetBits(GPIOE, left_LED);
+					GPIO_SetBits(GPIOE, right_LED);
+					STM_EVAL_LEDOn(LED4);
+					STM_EVAL_LEDOn(LED3);
+					STM_EVAL_LEDOn(LED5);
+					STM_EVAL_LEDOn(LED6);
+					GPIO_SetBits(GPIOE, left_LED);
+					GPIO_SetBits(GPIOE, right_LED);
+				break;
+			}
+			Delay(200);
+		}
+		else
+		{
+
+		}
+		
+	}
+	for (d = 1; d < 10; d++)
+	{
+		Delay(70);
+		STM_EVAL_LEDOn(LED4);
+		STM_EVAL_LEDOn(LED3);
+		STM_EVAL_LEDOn(LED5);
+		STM_EVAL_LEDOn(LED6);
+		Delay(70);
+		STM_EVAL_LEDOff(LED4);
+		STM_EVAL_LEDOff(LED3);
+		STM_EVAL_LEDOff(LED5);
+		STM_EVAL_LEDOff(LED6);
+	}
+	
+}
 void candle_sawed(void)
 {
 	int error = 0;
@@ -324,74 +438,112 @@ void go_to_center(void)
 }
 void chaos(void)
 {
-    move_double(forward, 1000);
+    move_double(forward, 1000); //oba motory naplno dopředu
     while(1)
     {
-        if(left_encoder<right_encoder?(left_encoder>(enc_last_left+stop_length)):(right_encoder>(enc_last_right+stop_length)))
+        if(left_encoder<right_encoder?(left_encoder>(enc_last_left+stop_length)):(right_encoder>(enc_last_right+stop_length))) //když ujede určitou vzdálenost
         {
            enc_last_left+=stop_length;
            enc_last_right+=stop_length;
-           for(t=1;t<9;t++)
+           for(t=1;t<9;t++) //8x se pootočit o 45 stupňů
 						{
-							for (h = 1; h < 45; h++) 
+							for (h = 1; h < 45; h++) //pootočit robota o 45 stupňů
 							{
-								if(candle_saw == 1)candle_sawed();
-								move_robot_degree(1, 800);
-								stop_robot(block);
+								if(candle_saw == 1)candle_sawed();//když vidí svíčku
+								move_robot_degree(1, 800);//pootočit o 1 stupeň
+								stop_robot(block);//zastavit robota
 							}
 							stop_robot(block);
 							if(t!= 8)Delay(500);
-							if(candle_saw == 1)candle_sawed();
+							if(candle_saw == 1)candle_sawed();//když vidí svíčku
 						}
-            move_double(forward, 1000);
+            move_double(forward, 1000);//oba motory naplno dopředu
         }
-        if(left_white || right_white || (distance_out[left_ultra] < 20) || (distance_out[right_ultra] < 20) || (distance_out[center_ultra] < 20))
+        if(left_white || right_white || (distance_out[left_ultra] < 20) || (distance_out[right_ultra] < 20) || (distance_out[center_ultra] < 20)) //pokud je na čáře nebo vidí stěny
         {
-            stop_robot(block);
-            if(left_white || (distance_out[left_ultra] < 20))
+            stop_robot(block); //zastavit robota
+            if(left_white || (distance_out[left_ultra] < 20)) //je na čáře nebo u stěny levým senzorem
             {
-                for (h = 1; h < chaoss; h++)
+                for (h = 1; h < chaoss; h++) //pootočit o 90-120 stupňů
                     {
-                        if(candle_saw == 1)
+                        if(candle_saw == 1)//když vidí svíčku
                            candle_sawed();
-                        move_robot_degree(1, 800);
-                        stop_robot(block);
+                        move_robot_degree(1, 800);//pootočit o 1 stupeň
+                        stop_robot(block);//zastavit robota
                     }
             }
-            else if(right_white || (distance_out[right_ultra] < 20))
+            else if(right_white || (distance_out[right_ultra] < 20)) //je na čáře nebo u stěny pravým senzorem
             {
-                for (h = 1; h < chaoss; h++)
+                for (h = 1; h < chaoss; h++) //pootočit o 90-120 stupňů
                     {
-                        if(candle_saw == 1)
+                        if(candle_saw == 1)//když vidí svíčku
                            candle_sawed();
-                        move_robot_degree(-1, 800);
-                        stop_robot(block);
+                        move_robot_degree(-1, 800);//pootočit o 1 stupeň
+                        stop_robot(block);//zastavit robota
                     }
             }
-            else if(distance_out[center_ultra] < 20)
+            else if(distance_out[center_ultra] < 20)  //je u stěny středním senzorem
             {
                move_unit_double(backward, 800, length, 150);
                stop_robot(block);
-               for (h = 1; h < chaoss; h++)
+               for (h = 1; h < chaoss; h++) //pootočit o 90-120 stupňů
                     {
-                        if(candle_saw == 1)
+                        if(candle_saw == 1)//když vidí svíčku
                            candle_sawed();
-                        move_robot_degree(-1, 800);
-                        stop_robot(block);
+                        move_robot_degree(-1, 800); //pootočit o 1 stupeň
+                        stop_robot(block);//zastavit robota
                     }
             }
 						
-            stop_robot(block);
+            stop_robot(block); //zastavit robota
             chaoss += 10;
             if(chaoss > 120)
             {
                 chaoss = 90;
             }
-            move_double(forward, 1000);
+            move_double(forward, 1000); //oba motory naplno dopředu
 						
         }
-				if(candle_saw == 1)
+				if(candle_saw == 1) //když vidí svíčku
                        candle_sawed();
     }
 }		
+void wall_detect(void)
+{
+	if((distance_out[left_ultra] < 30) || (distance_out[right_ultra] < 30) || (distance_out[center_ultra] < 20))
+	{
+		if(distance_out[center_ultra] < 15)
+		{
+			//move_unit_double(backward, 800, length, 100);
+			if(distance_out[left_ultra] > distance_out[right_ultra])
+			{
+				while(distance_out[right_ultra] < 30)
+				{
+					move(left, backward, 800);
+					move(right, forward, 800);
+				}
+			}else
+			{
+				while(distance_out[left_ultra] < 30)
+				{
+					move(right, backward, 800);
+					move(left, forward, 800);
+				}
+			}
+		}
+		else if(distance_out[right_ultra] < distance_out[left_ultra])
+		{
+			stop(left, block);
+			move(right, forward, 800);
+		}else if(distance_out[right_ultra] > distance_out[left_ultra])
+		{
+			stop(right, block);
+			move(left, forward, 800);
+		}
+	}else
+	{
+		move(left, forward, 800);
+		move(right, forward, 800);
+	}
 
+}

@@ -3,7 +3,7 @@ main_init.o: ..\main_init.h
 main_init.o: ..\Utilities\STM32F4-Discovery\stm32f4_discovery.h
 main_init.o: ..\Libraries\CMSIS\ST\STM32F4xx\Include\stm32f4xx.h
 main_init.o: ..\Libraries\CMSIS\Include\core_cm4.h
-main_init.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
+main_init.o: E:\Keil\ARM\ARMCC\bin\..\include\stdint.h
 main_init.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 main_init.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 main_init.o: ..\Libraries\CMSIS\Include\core_cm4_simd.h
