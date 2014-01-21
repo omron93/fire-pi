@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE eagle SYSTEM "eagle.dtd">
+<eagle version="6.3">
+<drawing>
+<settings>
+<setting alwaysvectorfont="no"/>
+<setting verticaltext="up"/>
+</settings>
+<grid distance="0.05" unitdist="inch" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="mm"/>
+<layers>
+<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
+<layer number="2" name="Route2" color="1" fill="3" visible="yes" active="yes"/>
+<layer number="3" name="Route3" color="4" fill="3" visible="yes" active="yes"/>
+<layer number="4" name="Route4" color="1" fill="4" visible="yes" active="yes"/>
+<layer number="5" name="Route5" color="4" fill="4" visible="yes" active="yes"/>
+<layer number="6" name="Route6" color="1" fill="8" visible="yes" active="yes"/>
+<layer number="7" name="Route7" color="4" fill="8" visible="yes" active="yes"/>
+<layer number="8" name="Route8" color="1" fill="2" visible="yes" active="yes"/>
+<layer number="9" name="Route9" color="4" fill="2" visible="yes" active="yes"/>
+<layer number="10" name="Route10" color="1" fill="7" visible="yes" active="yes"/>
+<layer number="11" name="Route11" color="4" fill="7" visible="yes" active="yes"/>
+<layer number="12" name="Route12" color="1" fill="5" visible="yes" active="yes"/>
+<layer number="13" name="Route13" color="4" fill="5" visible="yes" active="yes"/>
+<layer number="14" name="Route14" color="1" fill="6" visible="yes" active="yes"/>
+<layer number="15" name="Route15" color="4" fill="6" visible="yes" active="yes"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
+<layer number="20" name="Dimension" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
+<layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
+<layer number="32" name="bCream" color="7" fill="5" visible="yes" active="yes"/>
+<layer number="33" name="tFinish" color="6" fill="3" visible="yes" active="yes"/>
+<layer number="34" name="bFinish" color="6" fill="6" visible="yes" active="yes"/>
+<layer number="35" name="tGlue" color="7" fill="4" visible="yes" active="yes"/>
+<layer number="36" name="bGlue" color="7" fill="5" visible="yes" active="yes"/>
+<layer number="37" name="tTest" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="38" name="bTest" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="39" name="tKeepout" color="4" fill="11" visible="yes" active="yes"/>
+<layer number="40" name="bKeepout" color="1" fill="11" visible="yes" active="yes"/>
+<layer number="41" name="tRestrict" color="4" fill="10" visible="yes" active="yes"/>
+<layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
+<layer number="43" name="vRestrict" color="2" fill="10" visible="yes" active="yes"/>
+<layer number="44" name="Drills" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
+<layer number="47" name="Measures" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
+<layer number="93" name="Pins" color="2" fill="1" visible="yes" active="yes"/>
+<layer number="94" name="Symbols" color="4" fill="1" visible="yes" active="yes"/>
+<layer number="95" name="Names" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="96" name="Values" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="97" name="Info" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="98" name="Guide" color="6" fill="1" visible="yes" active="yes"/>
+</layers>
+<library>
+<description>&lt;b&gt;STM32F4 Discovery Board&lt;/b&gt;&lt;p&gt;
+Symbole and Footprint for Extension Boards&lt;p&gt;
+&lt;p&gt;
+&lt;em&gt;(m) Frank-Christian Krügel fchk@istda.com&lt;/em&gt;&lt;p&gt;</description>
+<packages>
+<package name="STM32F4_DISC">
+<description>STM32F4 Discovery Board Footprint</description>
+<wire x1="-34.29" y1="-32.385" x2="31.75" y2="-32.385" width="0.127" layer="21"/>
+<wire x1="31.75" y1="-32.385" x2="31.75" y2="64.135" width="0.127" layer="21"/>
+<wire x1="31.75" y1="64.135" x2="-34.29" y2="64.135" width="0.127" layer="21"/>
+<wire x1="-34.29" y1="64.135" x2="-34.29" y2="-32.385" width="0.127" layer="21"/>
+<pad name="L1" x="-27.94" y="30.48" drill="0.8" diameter="1.4224" shape="square"/>
+<pad name="L2" x="-25.4" y="30.48" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L3" x="-27.94" y="27.94" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L4" x="-25.4" y="27.94" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L5" x="-27.94" y="25.4" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L6" x="-25.4" y="25.4" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L7" x="-27.94" y="22.86" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L8" x="-25.4" y="22.86" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L9" x="-27.94" y="20.32" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L10" x="-25.4" y="20.32" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L11" x="-27.94" y="17.78" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L12" x="-25.4" y="17.78" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L13" x="-27.94" y="15.24" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L14" x="-25.4" y="15.24" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L15" x="-27.94" y="12.7" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L16" x="-25.4" y="12.7" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L17" x="-27.94" y="10.16" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L18" x="-25.4" y="10.16" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L19" x="-27.94" y="7.62" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L20" x="-25.4" y="7.62" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L21" x="-27.94" y="5.08" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L22" x="-25.4" y="5.08" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L23" x="-27.94" y="2.54" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L24" x="-25.4" y="2.54" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L25" x="-27.94" y="0" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L26" x="-25.4" y="0" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L27" x="-27.94" y="-2.54" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L28" x="-25.4" y="-2.54" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L29" x="-27.94" y="-5.08" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L30" x="-25.4" y="-5.08" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L31" x="-27.94" y="-7.62" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L32" x="-25.4" y="-7.62" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L33" x="-27.94" y="-10.16" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L34" x="-25.4" y="-10.16" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L35" x="-27.94" y="-12.7" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L36" x="-25.4" y="-12.7" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L37" x="-27.94" y="-15.24" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L38" x="-25.4" y="-15.24" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L39" x="-27.94" y="-17.78" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L40" x="-25.4" y="-17.78" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L41" x="-27.94" y="-20.32" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L42" x="-25.4" y="-20.32" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L43" x="-27.94" y="-22.86" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L44" x="-25.4" y="-22.86" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L45" x="-27.94" y="-25.4" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L46" x="-25.4" y="-25.4" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L47" x="-27.94" y="-27.94" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L48" x="-25.4" y="-27.94" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="L49" x="-27.94" y="-30.48" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="L50" x="-25.4" y="-30.48" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R1" x="22.86" y="30.48" drill="0.8" diameter="1.4224" shape="square"/>
+<pad name="R2" x="25.4" y="30.48" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R3" x="22.86" y="27.94" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R4" x="25.4" y="27.94" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R5" x="22.86" y="25.4" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R6" x="25.4" y="25.4" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R7" x="22.86" y="22.86" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R8" x="25.4" y="22.86" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R9" x="22.86" y="20.32" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R10" x="25.4" y="20.32" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R11" x="22.86" y="17.78" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R12" x="25.4" y="17.78" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R13" x="22.86" y="15.24" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R14" x="25.4" y="15.24" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R15" x="22.86" y="12.7" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R16" x="25.4" y="12.7" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R17" x="22.86" y="10.16" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R18" x="25.4" y="10.16" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R19" x="22.86" y="7.62" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R20" x="25.4" y="7.62" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R21" x="22.86" y="5.08" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R22" x="25.4" y="5.08" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R23" x="22.86" y="2.54" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R24" x="25.4" y="2.54" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R25" x="22.86" y="0" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R26" x="25.4" y="0" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R27" x="22.86" y="-2.54" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R28" x="25.4" y="-2.54" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R29" x="22.86" y="-5.08" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R30" x="25.4" y="-5.08" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R31" x="22.86" y="-7.62" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R32" x="25.4" y="-7.62" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R33" x="22.86" y="-10.16" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R34" x="25.4" y="-10.16" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R35" x="22.86" y="-12.7" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R36" x="25.4" y="-12.7" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R37" x="22.86" y="-15.24" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R38" x="25.4" y="-15.24" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R39" x="22.86" y="-17.78" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R40" x="25.4" y="-17.78" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R41" x="22.86" y="-20.32" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R42" x="25.4" y="-20.32" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R43" x="22.86" y="-22.86" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R44" x="25.4" y="-22.86" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R45" x="22.86" y="-25.4" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R46" x="25.4" y="-25.4" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R47" x="22.86" y="-27.94" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R48" x="25.4" y="-27.94" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="R49" x="22.86" y="-30.48" drill="0.8" diameter="1.4224" shape="offset" rot="R180"/>
+<pad name="R50" x="25.4" y="-30.48" drill="0.8" diameter="1.4224" shape="offset"/>
+<pad name="T1" x="-27.94" y="60.96" drill="0.8"/>
+<pad name="T2" x="-27.94" y="58.42" drill="0.8"/>
+<pad name="T3" x="25.4" y="60.96" drill="0.8"/>
+<pad name="T4" x="25.4" y="58.42" drill="0.8"/>
+<text x="-34.29" y="64.77" size="1.27" layer="25">&gt;NAME</text>
+<text x="24.13" y="64.77" size="1.27" layer="27">&gt;VALUE</text>
+</package>
+</packages>
+<symbols>
+<symbol name="STM32F4_PORTA">
+<wire x1="-20.32" y1="7.62" x2="-20.32" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-20.32" y1="-5.08" x2="22.86" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="22.86" y1="-5.08" x2="22.86" y2="7.62" width="0.254" layer="94"/>
+<wire x1="22.86" y1="7.62" x2="-20.32" y2="7.62" width="0.254" layer="94"/>
+<text x="-20.32" y="8.89" size="1.27" layer="95">&gt;NAME</text>
+<text x="12.7" y="8.89" size="1.27" layer="96">&gt;VALUE</text>
+<pin name="PA0" x="-17.78" y="-10.16" length="middle" rot="R90"/>
+<pin name="PA1" x="-15.24" y="-10.16" length="middle" rot="R90"/>
+<pin name="PA2" x="-12.7" y="-10.16" length="middle" rot="R90"/>
+<pin name="PA3" x="-10.16" y="-10.16" length="middle" rot="R90"/>
+<pin name="PA4" x="-7.62" y="-10.16" length="middle" rot="R90"/>
+<pin name="PA5" x="-5.08" y="-10.16" length="middle" rot="R90"/>
+<pin name="PA6" x="-2.54" y="-10.16" length="middle" rot="R90"/>
+<pin name="PA7" x="0" y="-10.16" length="middle" rot="R90"/>
+<pin name="PA8" x="2.54" y="-10.16" length="middle" rot="R90"/>
+<pin name="PA9" x="5.08" y="-10.16" length="middle" rot="R90"/>
+<pin name="PA10" x="7.62" y="-10.16" length="middle" rot="R90"/>
+<pin name="PA13" x="15.24" y="-10.16" length="middle" rot="R90"/>
+<pin name="PA14" x="17.78" y="-10.16" length="middle" rot="R90"/>
+<pin name="PA15" x="20.32" y="-10.16" length="middle" rot="R90"/>
+</symbol>
+<symbol name="STM32F4_PORTB">
+<wire x1="-20.32" y1="7.62" x2="-20.32" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-20.32" y1="-5.08" x2="22.86" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="22.86" y1="-5.08" x2="22.86" y2="7.62" width="0.254" layer="94"/>
+<wire x1="22.86" y1="7.62" x2="-20.32" y2="7.62" width="0.254" layer="94"/>
+<text x="-20.32" y="8.89" size="1.27" layer="95">&gt;NAME</text>
+<text x="12.7" y="8.89" size="1.27" layer="96">&gt;VALUE</text>
+<pin name="PB0" x="-17.78" y="-10.16" length="middle" rot="R90"/>
+<pin name="PB1" x="-15.24" y="-10.16" length="middle" rot="R90"/>
+<pin name="PB2" x="-12.7" y="-10.16" length="middle" rot="R90"/>
+<pin name="PB3" x="-10.16" y="-10.16" length="middle" rot="R90"/>
+<pin name="PB4" x="-7.62" y="-10.16" length="middle" rot="R90"/>
+<pin name="PB5" x="-5.08" y="-10.16" length="middle" rot="R90"/>
+<pin name="PB6" x="-2.54" y="-10.16" length="middle" rot="R90"/>
+<pin name="PB7" x="0" y="-10.16" length="middle" rot="R90"/>
+<pin name="PB8" x="2.54" y="-10.16" length="middle" rot="R90"/>
+<pin name="PB9" x="5.08" y="-10.16" length="middle" rot="R90"/>
+<pin name="PB10" x="7.62" y="-10.16" length="middle" rot="R90"/>
+<pin name="PB11" x="10.16" y="-10.16" length="middle" rot="R90"/>
+<pin name="PB12" x="12.7" y="-10.16" length="middle" rot="R90"/>
+<pin name="PB13" x="15.24" y="-10.16" length="middle" rot="R90"/>
+<pin name="PB14" x="17.78" y="-10.16" length="middle" rot="R90"/>
+<pin name="PB15" x="20.32" y="-10.16" length="middle" rot="R90"/>
+</symbol>
+<symbol name="STM32F4_PORTC">
+<wire x1="-20.32" y1="7.62" x2="-20.32" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-20.32" y1="-5.08" x2="22.86" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="22.86" y1="-5.08" x2="22.86" y2="7.62" width="0.254" layer="94"/>
+<wire x1="22.86" y1="7.62" x2="-20.32" y2="7.62" width="0.254" layer="94"/>
+<text x="-20.32" y="8.89" size="1.27" layer="95">&gt;NAME</text>
+<text x="12.7" y="8.89" size="1.27" layer="96">&gt;VALUE</text>
+<pin name="PC0" x="-17.78" y="-10.16" length="middle" rot="R90"/>
+<pin name="PC1" x="-15.24" y="-10.16" length="middle" rot="R90"/>
+<pin name="PC2" x="-12.7" y="-10.16" length="middle" rot="R90"/>
+<pin name="PC3" x="-10.16" y="-10.16" length="middle" rot="R90"/>
+<pin name="PC4" x="-7.62" y="-10.16" length="middle" rot="R90"/>
+<pin name="PC5" x="-5.08" y="-10.16" length="middle" rot="R90"/>
+<pin name="PC6" x="-2.54" y="-10.16" length="middle" rot="R90"/>
+<pin name="PC7" x="0" y="-10.16" length="middle" rot="R90"/>
+<pin name="PC8" x="2.54" y="-10.16" length="middle" rot="R90"/>
+<pin name="PC9" x="5.08" y="-10.16" length="middle" rot="R90"/>
+<pin name="PC10" x="7.62" y="-10.16" length="middle" rot="R90"/>
+<pin name="PC11" x="10.16" y="-10.16" length="middle" rot="R90"/>
+<pin name="PC12" x="12.7" y="-10.16" length="middle" rot="R90"/>
+<pin name="PC13" x="15.24" y="-10.16" length="middle" rot="R90"/>
+<pin name="PC14" x="17.78" y="-10.16" length="middle" rot="R90"/>
+<pin name="PC15" x="20.32" y="-10.16" length="middle" rot="R90"/>
+</symbol>
+<symbol name="STM32F4_PORTD">
+<wire x1="-20.32" y1="7.62" x2="-20.32" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-20.32" y1="-5.08" x2="22.86" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="22.86" y1="-5.08" x2="22.86" y2="7.62" width="0.254" layer="94"/>
+<wire x1="22.86" y1="7.62" x2="-20.32" y2="7.62" width="0.254" layer="94"/>
+<text x="-20.32" y="8.89" size="1.27" layer="95">&gt;NAME</text>
+<text x="12.7" y="8.89" size="1.27" layer="96">&gt;VALUE</text>
+<pin name="PD0" x="-17.78" y="-10.16" length="middle" rot="R90"/>
+<pin name="PD1" x="-15.24" y="-10.16" length="middle" rot="R90"/>
+<pin name="PD2" x="-12.7" y="-10.16" length="middle" rot="R90"/>
+<pin name="PD3" x="-10.16" y="-10.16" length="middle" rot="R90"/>
+<pin name="PD4" x="-7.62" y="-10.16" length="middle" rot="R90"/>
+<pin name="PD5" x="-5.08" y="-10.16" length="middle" rot="R90"/>
+<pin name="PD6" x="-2.54" y="-10.16" length="middle" rot="R90"/>
+<pin name="PD7" x="0" y="-10.16" length="middle" rot="R90"/>
+<pin name="PD8" x="2.54" y="-10.16" length="middle" rot="R90"/>
+<pin name="PD9" x="5.08" y="-10.16" length="middle" rot="R90"/>
+<pin name="PD10" x="7.62" y="-10.16" length="middle" rot="R90"/>
+<pin name="PD11" x="10.16" y="-10.16" length="middle" rot="R90"/>
+<pin name="PD12" x="12.7" y="-10.16" length="middle" rot="R90"/>
+<pin name="PD13" x="15.24" y="-10.16" length="middle" rot="R90"/>
+<pin name="PD14" x="17.78" y="-10.16" length="middle" rot="R90"/>
+<pin name="PD15" x="20.32" y="-10.16" length="middle" rot="R90"/>
+</symbol>
+<symbol name="STM32F4_PORTE">
+<wire x1="-20.32" y1="7.62" x2="-20.32" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-20.32" y1="-5.08" x2="22.86" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="22.86" y1="-5.08" x2="22.86" y2="7.62" width="0.254" layer="94"/>
+<wire x1="22.86" y1="7.62" x2="-20.32" y2="7.62" width="0.254" layer="94"/>
+<text x="-20.32" y="8.89" size="1.27" layer="95">&gt;NAME</text>
+<text x="12.7" y="8.89" size="1.27" layer="96">&gt;VALUE</text>
+<pin name="PE0" x="-17.78" y="-10.16" length="middle" rot="R90"/>
+<pin name="PE1" x="-15.24" y="-10.16" length="middle" rot="R90"/>
+<pin name="PE2" x="-12.7" y="-10.16" length="middle" rot="R90"/>
+<pin name="PE3" x="-10.16" y="-10.16" length="middle" rot="R90"/>
+<pin name="PE4" x="-7.62" y="-10.16" length="middle" rot="R90"/>
+<pin name="PE5" x="-5.08" y="-10.16" length="middle" rot="R90"/>
+<pin name="PE6" x="-2.54" y="-10.16" length="middle" rot="R90"/>
+<pin name="PE7" x="0" y="-10.16" length="middle" rot="R90"/>
+<pin name="PE8" x="2.54" y="-10.16" length="middle" rot="R90"/>
+<pin name="PE9" x="5.08" y="-10.16" length="middle" rot="R90"/>
+<pin name="PE10" x="7.62" y="-10.16" length="middle" rot="R90"/>
+<pin name="PE11" x="10.16" y="-10.16" length="middle" rot="R90"/>
+<pin name="PE12" x="12.7" y="-10.16" length="middle" rot="R90"/>
+<pin name="PE13" x="15.24" y="-10.16" length="middle" rot="R90"/>
+<pin name="PE14" x="17.78" y="-10.16" length="middle" rot="R90"/>
+<pin name="PE15" x="20.32" y="-10.16" length="middle" rot="R90"/>
+</symbol>
+<symbol name="STM32F4_PORTH">
+<wire x1="-15.24" y1="7.62" x2="-15.24" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="-15.24" y1="-5.08" x2="15.24" y2="-5.08" width="0.254" layer="94"/>
+<wire x1="15.24" y1="-5.08" x2="15.24" y2="7.62" width="0.254" layer="94"/>
+<wire x1="15.24" y1="7.62" x2="-15.24" y2="7.62" width="0.254" layer="94"/>
+<wire x1="2.54" y1="3.81" x2="2.54" y2="5.08" width="0.254" layer="94"/>
+<wire x1="2.54" y1="5.08" x2="5.08" y2="5.08" width="0.254" layer="94"/>
+<wire x1="5.08" y1="5.08" x2="5.08" y2="3.81" width="0.254" layer="94"/>
+<wire x1="10.16" y1="3.81" x2="10.16" y2="5.08" width="0.254" layer="94"/>
+<wire x1="10.16" y1="5.08" x2="12.7" y2="5.08" width="0.254" layer="94"/>
+<wire x1="12.7" y1="5.08" x2="12.7" y2="3.81" width="0.254" layer="94"/>
+<text x="-15.24" y="8.89" size="1.27" layer="95">&gt;NAME</text>
+<text x="7.62" y="8.89" size="1.27" layer="96">&gt;VALUE</text>
+<pin name="PH0" x="-12.7" y="-10.16" length="middle" rot="R90"/>
+<pin name="PH1" x="-10.16" y="-10.16" length="middle" rot="R90"/>
+<pin name="NC" x="-7.62" y="-10.16" length="middle" direction="nc" rot="R90"/>
+<pin name="BOOT0" x="-5.08" y="-10.16" length="middle" direction="in" rot="R90"/>
+<pin name="!RST" x="-2.54" y="-10.16" length="middle" direction="in" rot="R90"/>
+<pin name="JP2A" x="2.54" y="-10.16" length="middle" direction="pas" rot="R90"/>
+<pin name="JP2B" x="5.08" y="-10.16" length="middle" direction="pas" rot="R90"/>
+<pin name="JP3A" x="10.16" y="-10.16" length="middle" direction="pas" rot="R90"/>
+<pin name="JP3B" x="12.7" y="-10.16" length="middle" direction="pas" rot="R90"/>
+</symbol>
+<symbol name="STM32F4_POWER">
+<wire x1="-15.24" y1="12.7" x2="-15.24" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="-15.24" y1="-10.16" x2="12.7" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="12.7" y1="-10.16" x2="12.7" y2="12.7" width="0.254" layer="94"/>
+<wire x1="12.7" y1="12.7" x2="-15.24" y2="12.7" width="0.254" layer="94"/>
+<text x="-16.51" y="-7.62" size="1.27" layer="95" rot="R90">&gt;NAME</text>
+<text x="15.24" y="-7.62" size="1.27" layer="96" rot="R90">&gt;VALUE</text>
+<pin name="GND@1" x="-12.7" y="-15.24" length="middle" direction="pwr" rot="R90"/>
+<pin name="GND@2" x="-10.16" y="-15.24" length="middle" direction="pwr" rot="R90"/>
+<pin name="GND@3" x="-7.62" y="-15.24" length="middle" direction="pwr" rot="R90"/>
+<pin name="GND@4" x="-5.08" y="-15.24" length="middle" direction="pwr" rot="R90"/>
+<pin name="GND@5" x="-2.54" y="-15.24" length="middle" direction="pwr" rot="R90"/>
+<pin name="GND@6" x="0" y="-15.24" length="middle" direction="pwr" rot="R90"/>
+<pin name="GND@7" x="2.54" y="-15.24" length="middle" direction="pwr" rot="R90"/>
+<pin name="GND@8" x="5.08" y="-15.24" length="middle" direction="pwr" rot="R90"/>
+<pin name="GND@9" x="7.62" y="-15.24" length="middle" direction="pwr" rot="R90"/>
+<pin name="GND@10" x="10.16" y="-15.24" length="middle" direction="pwr" rot="R90"/>
+<pin name="5V@1" x="-12.7" y="17.78" length="middle" direction="pwr" rot="R270"/>
+<pin name="5V@2" x="-10.16" y="17.78" length="middle" direction="pwr" rot="R270"/>
+<pin name="3V3@1" x="-5.08" y="17.78" length="middle" direction="pwr" rot="R270"/>
+<pin name="3V3@2" x="-2.54" y="17.78" length="middle" direction="pwr" rot="R270"/>
+<pin name="VDD@1" x="2.54" y="17.78" length="middle" direction="pwr" rot="R270"/>
+<pin name="VDD@2" x="5.08" y="17.78" length="middle" direction="pwr" rot="R270"/>
+<pin name="VDD@3" x="7.62" y="17.78" length="middle" direction="pwr" rot="R270"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="STM32F4_DISC" prefix="X">
+<description>STM32F4 Discovery Board</description>
+<gates>
+<gate name="PWR" symbol="STM32F4_POWER" x="-43.18" y="22.86" addlevel="must"/>
+<gate name="PORTA" symbol="STM32F4_PORTA" x="0" y="27.94" addlevel="request"/>
+<gate name="PORTB" symbol="STM32F4_PORTB" x="48.26" y="27.94" addlevel="request"/>
+<gate name="PORTC" symbol="STM32F4_PORTC" x="0" y="0" addlevel="request"/>
+<gate name="PORTD" symbol="STM32F4_PORTD" x="48.26" y="0" addlevel="request"/>
+<gate name="PORTE" symbol="STM32F4_PORTE" x="0" y="-27.94" addlevel="request"/>
+<gate name="PORTH" symbol="STM32F4_PORTH" x="43.18" y="-27.94" addlevel="request"/>
+</gates>
+<devices>
+<device name="" package="STM32F4_DISC">
+<connects>
+<connect gate="PORTA" pin="PA0" pad="L12"/>
+<connect gate="PORTA" pin="PA1" pad="L11"/>
+<connect gate="PORTA" pin="PA10" pad="R41"/>
+<connect gate="PORTA" pin="PA13" pad="R42"/>
+<connect gate="PORTA" pin="PA14" pad="R39"/>
+<connect gate="PORTA" pin="PA15" pad="R40"/>
+<connect gate="PORTA" pin="PA2" pad="L14"/>
+<connect gate="PORTA" pin="PA3" pad="L13"/>
+<connect gate="PORTA" pin="PA4" pad="L16"/>
+<connect gate="PORTA" pin="PA5" pad="L15"/>
+<connect gate="PORTA" pin="PA6" pad="L18"/>
+<connect gate="PORTA" pin="PA7" pad="L17"/>
+<connect gate="PORTA" pin="PA8" pad="R43"/>
+<connect gate="PORTA" pin="PA9" pad="R44"/>
+<connect gate="PORTB" pin="PB0" pad="L22"/>
+<connect gate="PORTB" pin="PB1" pad="L21"/>
+<connect gate="PORTB" pin="PB10" pad="L34"/>
+<connect gate="PORTB" pin="PB11" pad="L35"/>
+<connect gate="PORTB" pin="PB12" pad="L36"/>
+<connect gate="PORTB" pin="PB13" pad="L37"/>
+<connect gate="PORTB" pin="PB14" pad="L38"/>
+<connect gate="PORTB" pin="PB15" pad="L39"/>
+<connect gate="PORTB" pin="PB2" pad="L24"/>
+<connect gate="PORTB" pin="PB3" pad="R28"/>
+<connect gate="PORTB" pin="PB4" pad="R25"/>
+<connect gate="PORTB" pin="PB5" pad="R26"/>
+<connect gate="PORTB" pin="PB6" pad="R23"/>
+<connect gate="PORTB" pin="PB7" pad="R24"/>
+<connect gate="PORTB" pin="PB8" pad="R19"/>
+<connect gate="PORTB" pin="PB9" pad="R20"/>
+<connect gate="PORTC" pin="PC0" pad="L8"/>
+<connect gate="PORTC" pin="PC1" pad="L7"/>
+<connect gate="PORTC" pin="PC10" pad="R37"/>
+<connect gate="PORTC" pin="PC11" pad="R38"/>
+<connect gate="PORTC" pin="PC12" pad="R35"/>
+<connect gate="PORTC" pin="PC13" pad="R12"/>
+<connect gate="PORTC" pin="PC14" pad="R9"/>
+<connect gate="PORTC" pin="PC15" pad="R10"/>
+<connect gate="PORTC" pin="PC2" pad="L10"/>
+<connect gate="PORTC" pin="PC3" pad="L9"/>
+<connect gate="PORTC" pin="PC4" pad="L19"/>
+<connect gate="PORTC" pin="PC5" pad="L20"/>
+<connect gate="PORTC" pin="PC6" pad="R47"/>
+<connect gate="PORTC" pin="PC7" pad="R48"/>
+<connect gate="PORTC" pin="PC8" pad="R45"/>
+<connect gate="PORTC" pin="PC9" pad="R46"/>
+<connect gate="PORTD" pin="PD0" pad="R36"/>
+<connect gate="PORTD" pin="PD1" pad="R33"/>
+<connect gate="PORTD" pin="PD10" pad="L42"/>
+<connect gate="PORTD" pin="PD11" pad="L43"/>
+<connect gate="PORTD" pin="PD12" pad="L44"/>
+<connect gate="PORTD" pin="PD13" pad="L45"/>
+<connect gate="PORTD" pin="PD14" pad="L46"/>
+<connect gate="PORTD" pin="PD15" pad="L47"/>
+<connect gate="PORTD" pin="PD2" pad="R34"/>
+<connect gate="PORTD" pin="PD3" pad="R31"/>
+<connect gate="PORTD" pin="PD4" pad="R32"/>
+<connect gate="PORTD" pin="PD5" pad="R29"/>
+<connect gate="PORTD" pin="PD6" pad="R30"/>
+<connect gate="PORTD" pin="PD7" pad="R27"/>
+<connect gate="PORTD" pin="PD8" pad="L40"/>
+<connect gate="PORTD" pin="PD9" pad="L41"/>
+<connect gate="PORTE" pin="PE0" pad="R17"/>
+<connect gate="PORTE" pin="PE1" pad="R18"/>
+<connect gate="PORTE" pin="PE10" pad="L28"/>
+<connect gate="PORTE" pin="PE11" pad="L29"/>
+<connect gate="PORTE" pin="PE12" pad="L30"/>
+<connect gate="PORTE" pin="PE13" pad="L31"/>
+<connect gate="PORTE" pin="PE14" pad="L32"/>
+<connect gate="PORTE" pin="PE15" pad="L33"/>
+<connect gate="PORTE" pin="PE2" pad="R15"/>
+<connect gate="PORTE" pin="PE3" pad="R16"/>
+<connect gate="PORTE" pin="PE4" pad="R13"/>
+<connect gate="PORTE" pin="PE5" pad="R14"/>
+<connect gate="PORTE" pin="PE6" pad="R11"/>
+<connect gate="PORTE" pin="PE7" pad="L25"/>
+<connect gate="PORTE" pin="PE8" pad="L26"/>
+<connect gate="PORTE" pin="PE9" pad="L27"/>
+<connect gate="PORTH" pin="!RST" pad="L6"/>
+<connect gate="PORTH" pin="BOOT0" pad="R21"/>
+<connect gate="PORTH" pin="JP2A" pad="T1"/>
+<connect gate="PORTH" pin="JP2B" pad="T2"/>
+<connect gate="PORTH" pin="JP3A" pad="T3"/>
+<connect gate="PORTH" pin="JP3B" pad="T4"/>
+<connect gate="PORTH" pin="NC" pad="L48"/>
+<connect gate="PORTH" pin="PH0" pad="R7"/>
+<connect gate="PORTH" pin="PH1" pad="R8"/>
+<connect gate="PWR" pin="3V3@1" pad="R5"/>
+<connect gate="PWR" pin="3V3@2" pad="R6"/>
+<connect gate="PWR" pin="5V@1" pad="R3"/>
+<connect gate="PWR" pin="5V@2" pad="R4"/>
+<connect gate="PWR" pin="GND@1" pad="L1"/>
+<connect gate="PWR" pin="GND@10" pad="R50"/>
+<connect gate="PWR" pin="GND@2" pad="L2"/>
+<connect gate="PWR" pin="GND@3" pad="L5"/>
+<connect gate="PWR" pin="GND@4" pad="L23"/>
+<connect gate="PWR" pin="GND@5" pad="L49"/>
+<connect gate="PWR" pin="GND@6" pad="L50"/>
+<connect gate="PWR" pin="GND@7" pad="R1"/>
+<connect gate="PWR" pin="GND@8" pad="R2"/>
+<connect gate="PWR" pin="GND@9" pad="R49"/>
+<connect gate="PWR" pin="VDD@1" pad="L3"/>
+<connect gate="PWR" pin="VDD@2" pad="L4"/>
+<connect gate="PWR" pin="VDD@3" pad="R22"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+</drawing>
+</eagle>
