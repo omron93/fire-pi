@@ -46,3 +46,23 @@
 
 1356296181 /home/kuba/projects/OpenCV - Candle detection//uart.h
 
+1390337136 source:/home/kuba/github/fire-pi/Raspberry_Pi/OpenCV - Candle detection/main.cpp
+	<cv.h>
+	<highgui.h>
+	<stdlib.h>
+	<stdio.h>
+	<iostream>
+	<sstream>
+	"uart.h"
+	<unistd.h>
+
+1390337136 /home/kuba/github/fire-pi/Raspberry_Pi/OpenCV - Candle detection/uart.h
+
+1390337136 source:/home/kuba/github/fire-pi/Raspberry_Pi/OpenCV - Candle detection/uart.cpp
+	<string.h>
+	<termios.h>
+	<iostream>
+	<stdio.h>
+	<unistd.h>
+	<fcntl.h>
+
